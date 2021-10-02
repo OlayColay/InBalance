@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a0cc29e8bdd264c956ddb9d7c5ce26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battleManager: {fileID: 0}
   health: 100
   maxHealth: 100
   strength: 10
@@ -482,6 +483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c6506b48cfe10489d4270b4c231869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battleManager: {fileID: 0}
   health: 100
   maxHealth: 100
   strength: 10
@@ -1108,6 +1110,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventSystem: {fileID: 101450610}
+  player: {fileID: 192772827}
+  currentTurn: 6
   playerActionsUI: {fileID: 968448758}
 --- !u!4 &930621989
 Transform:
@@ -1257,6 +1261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a0cc29e8bdd264c956ddb9d7c5ce26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battleManager: {fileID: 0}
   health: 100
   maxHealth: 100
   strength: 10
@@ -1355,6 +1360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a0cc29e8bdd264c956ddb9d7c5ce26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battleManager: {fileID: 0}
   health: 100
   maxHealth: 100
   strength: 10

@@ -5,6 +5,8 @@ using static Constants;
 
 public class Actor : MonoBehaviour
 {
+    public BattleManager battleManager;
+
     [SerializeField] protected int health = 100;
     /// <summary> Health points of the actor </summary>
     public virtual int HP {

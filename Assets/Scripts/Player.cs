@@ -8,7 +8,7 @@ using static Constants;
 public class Player : Actor
 {
     private Health healthScript;
-    private Controls.BattleActions battleActions;
+    public Controls.BattleActions battleActions;
     [SerializeField] private GameObject playerActions;
     
     private Actor selectedEnemy;
@@ -21,6 +21,10 @@ public class Player : Actor
         }
         set
         {
+            if (enemies.Length == 0)
+            {
+                return;
+            }
             switch(value)
             {
                 case 0:
@@ -125,6 +129,11 @@ public class Player : Actor
     {
         GameObject[] currentEnemies = GameObject.FindGameObjectsWithTag("Enemy");
 
+        if (enemies.Length == 0)
+        {
+            // Victory!
+            battleManager.Victory();
+        }
         if (enemies.Length != currentEnemies.Length)
         {
             enemies = new Actor[currentEnemies.Length];

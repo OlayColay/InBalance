@@ -14,6 +14,17 @@ public static class Constants : object
         Lightning
     }
 
+    public enum Turn
+    {
+        Player,
+        PlayerToEnemies,
+        Enemy1,
+        Enemy2,
+        Enemy3,
+        EnemiesToPlayer,
+        None
+    }
+
     /// <summary> Multiplier to damage that is resisted by an Actor's type </summary>
     public static float resistantMultiplier = 0.5f;
     /// <summary> Multiplier to damage that is strengthened by an Actor's type </summary>
