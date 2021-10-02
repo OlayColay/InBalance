@@ -7,7 +7,7 @@ public class Actor : MonoBehaviour
 {
     protected int health = 100;
     /// <summary> Health points of the actor </summary>
-    public int HP {
+    public virtual int HP {
         get 
         {
             return health;
@@ -15,6 +15,19 @@ public class Actor : MonoBehaviour
         set
         {
             health = value;
+        }
+    }
+
+    protected int maxHealth = 100;
+    /// <summary> Maximum health points of the actor </summary>
+    public virtual int MaxHP {
+        get 
+        {
+            return maxHealth;
+        }
+        set
+        {
+            maxHealth = value;
         }
     }
 
