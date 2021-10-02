@@ -8,8 +8,9 @@ public class DialogueTest : MonoBehaviour
 {
     public Text tex;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        this.gameObject.GetComponent<RunMultipleDialogue>().loadDialogue(60, 3);
         this.gameObject.GetComponent<RunMultipleDialogue>().startDialogue();
     }
 
@@ -19,7 +20,10 @@ public class DialogueTest : MonoBehaviour
         if (Keyboard.current.anyKey.wasPressedThisFrame)
         {
             Debug.Log("pressed");
-            this.gameObject.GetComponent<RunMultipleDialogue>().runNextDia();
+            if (this.gameObject.GetComponent<RunMultipleDialogue>().runNextDia() == 1)
+            {
+                Debug.Log("Finished");
+            }
         }
     }
 }
