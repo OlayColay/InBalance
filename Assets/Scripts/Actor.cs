@@ -15,6 +15,11 @@ public class Actor : MonoBehaviour
         set
         {
             health = value;
+
+            if (health < 1)
+            {
+                Die();
+            }
         }
     }
 
@@ -95,6 +100,11 @@ public class Actor : MonoBehaviour
     /// <summary> If the actor is currently attacking </summary>
     public bool isAttacking = false;
 
+    private void Start()
+    {
+        GetEnemies();
+    }
+
     /// <summary> Actor has HP reduced depending on element of the attack </summary>
     public void TakeDamage(float damageAmount, Type damageType)
     {
@@ -159,5 +169,16 @@ public class Actor : MonoBehaviour
         if (enemies.Length < 1)
             enemies = new Player[1];
         enemies[0] = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+    }
+
+    /// <summary> This is called when the Actor's HP is 0 </summary>
+    public virtual void Die()
+    {
+        gameObject.SetActive(false);
+
+        foreach (Actor enemy in enemies)
+        {
+            enemy.GetEnemies();
+        }
     }
 }

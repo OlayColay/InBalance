@@ -9,6 +9,38 @@ public class Player : Actor
 {
     private Health healthScript;
     private Controls.BattleActions battleActions;
+    [SerializeField] private GameObject playerActions;
+    
+    private Actor selectedEnemy;
+    private int selectedEnemyNum = 0;
+    /// <summary> The enemy that the player will attack </summary>
+    public int SelectedEnemyNum {
+        get
+        {
+            return selectedEnemyNum;
+        }
+        set
+        {
+            switch(value)
+            {
+                case 0:
+                    selectedEnemy = enemies[0];
+                    selectedEnemyNum = 0;
+                    break;
+                case 1:
+                    selectedEnemy = enemies.Length < 2 ? enemies[0] : enemies[1];
+                    selectedEnemyNum = enemies.Length < 2 ? 0 : 1;
+                    break;
+                case 2:
+                    selectedEnemy = enemies.Length < 3 ? (enemies.Length < 2 ? enemies[0] : enemies[1]) : enemies[2];
+                    selectedEnemyNum = enemies.Length < 3 ? (enemies.Length < 2 ? 0 : 1) : 2;
+                    break;
+                default:
+                    Debug.LogError("SelectedEnemyNum is being set to in invalid number: " + value);
+                    break;
+            }
+        }
+    }
 
     /// <summary> Element meters of the player </summary>
     public int[] elementMeters = {0, 0, 0, 0, 0};
@@ -65,17 +97,27 @@ public class Player : Actor
         battleActions.Earth.performed += ctx => Attack(Type.Earth);
         battleActions.Fire.performed += ctx => Attack(Type.Fire);
         battleActions.Lightning.performed += ctx => Attack(Type.Lightning);
+
+        battleActions.DirectionalInput.performed += ctx => SelectedEnemyNum = ctx.ReadValue<float>() < 0 ? 2 : 0;
+        battleActions.DirectionalInput.canceled += ctx => SelectedEnemyNum = 1;
+    }
+
+    private void Start()
+    {
+        GetEnemies();
     }
 
     public void AttackSelected()
     {
         Debug.Log("Player attacks!");
         battleActions.Enable();
+        playerActions.SetActive(false);
     }
 
     public void Attack(Type type = Type.Physical)
     {
-        Debug.Log(type.ToString() + " attack performed!");
+        Debug.Log(type.ToString() + " attack performed against " + selectedEnemy.name + "!");
+        selectedEnemy.TakeDamage(10, type);
     }
 
     /// <summary> The player finds every active enemy on screen </summary>
@@ -92,5 +134,8 @@ public class Player : Actor
         {
             enemies[i] = currentEnemies[i].GetComponent<Actor>();
         }
+
+        // So that the currently selected enemy refreshes
+        SelectedEnemyNum = SelectedEnemyNum;
     }
 }

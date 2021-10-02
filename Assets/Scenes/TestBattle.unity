@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 86997212}
   m_Layer: 0
   m_Name: EarthEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -175,6 +175,7 @@ MonoBehaviour:
   resist: 100
   type: 3
   abilities: []
+  enemies: []
   isAttacking: 0
 --- !u!212 &86997213
 SpriteRenderer:
@@ -489,7 +490,9 @@ MonoBehaviour:
   resist: 100
   type: 0
   abilities: []
+  enemies: []
   isAttacking: 0
+  playerActions: {fileID: 968448758}
   elementMeters: 0000000000000000000000000000000000000000
 --- !u!1 &388537028
 GameObject:
@@ -1172,7 +1175,7 @@ GameObject:
   - component: {fileID: 985482340}
   m_Layer: 0
   m_Name: AirEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1262,6 +1265,7 @@ MonoBehaviour:
   resist: 100
   type: 1
   abilities: []
+  enemies: []
   isAttacking: 0
 --- !u!114 &985482340
 MonoBehaviour:
@@ -1282,7 +1286,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1320,7 +1324,7 @@ GameObject:
   - component: {fileID: 1046313699}
   m_Layer: 0
   m_Name: FireEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1359,6 +1363,7 @@ MonoBehaviour:
   resist: 100
   type: 4
   abilities: []
+  enemies: []
   isAttacking: 0
 --- !u!212 &1046313700
 SpriteRenderer:
