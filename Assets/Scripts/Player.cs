@@ -9,16 +9,28 @@ public class Player : Actor
 
     public int[] elementMeters = {0, 0, 0, 0, 0};
 
-    private int experience;
-    public int EXP {
-        get;
-        set;
+    private int[] elementExperience = {0, 0, 0, 0, 0};
+    public int[] EXP {
+        get
+        {
+            return elementExperience;
+        }
+        set
+        {
+            elementExperience = value;
+        }
     }
 
-    private int nextLevel;
-    public int MaxEXP {
-        get;
-        set;
+    private int[] nextLevel = {100, 100, 100, 100, 100};
+    public int[] MaxEXP {
+        get
+        {
+            return nextLevel;
+        }
+        set
+        {
+            nextLevel = value;
+        }
     }
 
     public override int HP {
