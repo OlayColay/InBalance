@@ -5,7 +5,7 @@ using static Constants;
 
 public class Actor : MonoBehaviour
 {
-    protected int health = 100;
+    [SerializeField] protected int health = 100;
     /// <summary> Health points of the actor </summary>
     public virtual int HP {
         get 
@@ -18,7 +18,7 @@ public class Actor : MonoBehaviour
         }
     }
 
-    protected int maxHealth = 100;
+    [SerializeField] protected int maxHealth = 100;
     /// <summary> Maximum health points of the actor </summary>
     public virtual int MaxHP {
         get 
@@ -31,7 +31,7 @@ public class Actor : MonoBehaviour
         }
     }
 
-    protected int strength = 10;
+    [SerializeField] protected int strength = 10;
     /// <summary> Physical attack of the actor </summary>
     public int Strength {
         get 
@@ -44,7 +44,7 @@ public class Actor : MonoBehaviour
         }
     }
 
-    protected int armor = 100;
+    [SerializeField] protected int armor = 100;
     /// <summary> Physical defense of the actor </summary>
     public int Armor {
         get 
@@ -57,7 +57,7 @@ public class Actor : MonoBehaviour
         }
     }
 
-    protected int wisdom = 100;
+    [SerializeField] protected int wisdom = 100;
     /// <summary> Elemental attack of the actor </summary>
     public int Wisdom {
         get 
@@ -70,7 +70,7 @@ public class Actor : MonoBehaviour
         }
     }
 
-    protected int resist = 100;
+    [SerializeField] protected int resist = 100;
     /// <summary> Elemental defense of the actor </summary>
     public int Resist {
         get 
@@ -88,6 +88,9 @@ public class Actor : MonoBehaviour
 
     /// <summary> Array of an Actor's abilities </summary>
     public Ability[] abilities;
+
+    /// <summary> If the actor is currently attacking </summary>
+    public bool isAttacking = false;
 
     /// <summary> Actor has HP reduced depending on element of the attack </summary>
     public void TakeDamage(float damageAmount, Type damageType)
@@ -138,5 +141,12 @@ public class Actor : MonoBehaviour
             default:
                 return false;
         }
+    }
+
+    /// <summary> Enemies pick a random ability of theirs to attack with </summary>
+    public virtual void Attack()
+    {
+        int rand = Random.Range(0, abilities.Length);
+        abilities[rand].Use();
     }
 }

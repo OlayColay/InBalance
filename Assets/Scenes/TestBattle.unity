@@ -377,8 +377,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c6506b48cfe10489d4270b4c231869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
+  maxHealth: 100
+  strength: 10
+  armor: 100
+  wisdom: 100
+  resist: 100
   type: 0
   abilities: []
+  isAttacking: 0
   elementMeters: 0000000000000000000000000000000000000000
 --- !u!1 &388537028
 GameObject:
@@ -1142,8 +1149,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a0cc29e8bdd264c956ddb9d7c5ce26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
+  maxHealth: 100
+  strength: 10
+  armor: 100
+  wisdom: 100
+  resist: 100
   type: 0
   abilities: []
+  isAttacking: 0
 --- !u!1 &1091689952
 GameObject:
   m_ObjectHideFlags: 0

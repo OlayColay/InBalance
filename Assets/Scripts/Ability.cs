@@ -13,4 +13,7 @@ public abstract class Ability : MonoBehaviour
 
     /// <summary> What the name of the ability is on menus or info screens </summary>
     public abstract string displayName {get;}
+
+    /// <summary> Use the ability on the Actor's enemy </summary>
+    public abstract void Use();
 }
