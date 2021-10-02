@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class DialogueTest : MonoBehaviour
 {
@@ -9,12 +10,16 @@ public class DialogueTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        tex.text = CsvToDialogue.pullColumn(10);
+        this.gameObject.GetComponent<RunMultipleDialogue>().startDialogue();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Keyboard.current.anyKey.wasPressedThisFrame)
+        {
+            Debug.Log("pressed");
+            this.gameObject.GetComponent<RunMultipleDialogue>().runNextDia();
+        }
     }
 }
