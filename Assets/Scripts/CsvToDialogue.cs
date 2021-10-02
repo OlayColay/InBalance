@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
+
+/*
+ * If you want to use the pullColumn function to get dialogue from the CSV file
+ * Call CsvToDialgoue.pullColumn(n) where n is the column you want to get.
+ * It will return a string with that column
+ * Dont call a column that doesnt exist
+ * Dont subtract one from the column number
+ */
 public class CsvToDialogue
 {
     static string csvFile = "Assets/Ludum Dare Team 5 Dialogue - Sheet1.csv";
@@ -11,6 +19,7 @@ public class CsvToDialogue
 
     public static string pullColumn(int colNum)
     {
+        Debug.Log(colNum);
 
         theSourceFile = new FileInfo(csvFile);
         reader = theSourceFile.OpenText();
