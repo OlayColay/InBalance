@@ -13,6 +13,21 @@ public class NPCInteract_Test : MonoBehaviour
     private void Awake()
     {
         controls = new Controls();
+
+        controls.Overworld.Interact.performed += pressed =>
+        {
+            if (interactEnabled)
+            {
+                if (dialogueBox.activeInHierarchy)
+                {
+                    dialogueBox.SetActive(false);
+                }
+                else
+                {
+                    dialogueBox.SetActive(true);
+                }
+            }
+        };
     }
 
     private void OnEnable()
@@ -23,25 +38,6 @@ public class NPCInteract_Test : MonoBehaviour
     private void OnDisable()
     {
         controls.Disable();
-    }
-
-    private void Update()
-    {
-        if (interactEnabled)
-        {
-            controls.Overworld.Interact.canceled += pressed =>
-            {
-                if (dialogueBox.activeInHierarchy)
-                {
-                    dialogueBox.SetActive(false);
-                }
-                else
-                {
-                    dialogueBox.SetActive(true);
-                }
-            };
-        }
-        // Issue: sometimes it does not respond to consecutive button press?
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
