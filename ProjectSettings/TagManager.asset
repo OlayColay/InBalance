@@ -6,6 +6,7 @@ TagManager:
   tags:
   - NPC
   - Environment
+  - Border
   layers:
   - Default
   - TransparentFX

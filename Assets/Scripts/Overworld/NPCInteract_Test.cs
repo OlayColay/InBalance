@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class NPCInteract_Test : MonoBehaviour
 {
     [SerializeField] private GameObject dialogueBox;
+    [SerializeField] private GameObject interactReminder;
     private Controls controls;
     private bool interactEnabled;
 
@@ -21,10 +22,12 @@ public class NPCInteract_Test : MonoBehaviour
                 if (dialogueBox.activeInHierarchy)
                 {
                     dialogueBox.SetActive(false);
+                    interactReminder.SetActive(true);
                 }
                 else
                 {
                     dialogueBox.SetActive(true);
+                    interactReminder.SetActive(false);
                 }
             }
         };
@@ -46,6 +49,7 @@ public class NPCInteract_Test : MonoBehaviour
         {
             // dialogueBox.SetActive(true);
             interactEnabled = true;
+            interactReminder.SetActive(true);
         }
     }
 
@@ -55,6 +59,7 @@ public class NPCInteract_Test : MonoBehaviour
         {
             dialogueBox.SetActive(false);
             interactEnabled = false;
+            interactReminder.SetActive(false);
         }
     }
 
