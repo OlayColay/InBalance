@@ -52,14 +52,15 @@ public class RunMultipleDialogue : MonoBehaviour
     public int runNextDia()
     {
         currDia++;
-        if (currDia >= diaMessages.Count)
+        if (this.gameObject.GetComponent<ScanDialogue>().inWrite)
+        {
+            currDia--;
+            return 2;
+        }
+        else if (currDia >= diaMessages.Count)
         {
             currDia--;
             return 1;
-        }
-        else if (this.gameObject.GetComponent<ScanDialogue>().inWrite)
-        {
-            return 2;
         }
         this.gameObject.GetComponent<ScanDialogue>().writeToBox(diaText, diaMessages[currDia]);
         return 0;
