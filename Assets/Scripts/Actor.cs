@@ -73,6 +73,9 @@ public class Actor : MonoBehaviour
     /// <summary> Type of the actor that affects which attacks are strong or weak against the actor </summary>
     public Type type;
 
+    /// <summary> Array of an Actor's abilities </summary>
+    public Ability[] abilities;
+
     /// <summary> Actor has HP reduced depending on element of the attack </summary>
     public void TakeDamage(float damageAmount, Type damageType)
     {
