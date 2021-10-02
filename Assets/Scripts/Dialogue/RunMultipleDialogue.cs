@@ -21,7 +21,6 @@ public class RunMultipleDialogue : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        loadDialogue(60, 3);   
     }
 
     // Update is called once per frame
@@ -32,7 +31,7 @@ public class RunMultipleDialogue : MonoBehaviour
 
     //Loads a series of dialogue from the CSV file
     //starts with row start, then reads num rows
-    void loadDialogue(int start, int num)
+    public void loadDialogue(int start, int num)
     {
         for (int x = 0; x < num; x++)
         {
@@ -49,19 +48,20 @@ public class RunMultipleDialogue : MonoBehaviour
 
 
     //runs the next dialogue message in the list
-    public bool runNextDia()
+    //0 for success, 1 for end of dialogue, 2 for in the middle of scan
+    public int runNextDia()
     {
         currDia++;
         if (currDia >= diaMessages.Count)
         {
             currDia--;
-            return false;
+            return 1;
         }
         else if (this.gameObject.GetComponent<ScanDialogue>().inWrite)
         {
-            return false;
+            return 2;
         }
         this.gameObject.GetComponent<ScanDialogue>().writeToBox(diaText, diaMessages[currDia]);
-        return true;
+        return 0;
     }
 }
