@@ -89,6 +89,9 @@ public class Actor : MonoBehaviour
     /// <summary> Array of an Actor's abilities </summary>
     public Ability[] abilities;
 
+    /// <summary> Array of an Actor's enemies (for enemies, it's just the player) </summary>
+    public Actor[] enemies;
+
     /// <summary> If the actor is currently attacking </summary>
     public bool isAttacking = false;
 
@@ -148,5 +151,13 @@ public class Actor : MonoBehaviour
     {
         int rand = Random.Range(0, abilities.Length);
         abilities[rand].Use();
+    }
+    
+    /// <summary> Enemies will just get the player as their enemy </summary>
+    public virtual void GetEnemies()
+    {
+        if (enemies.Length < 1)
+            enemies = new Player[1];
+        enemies[0] = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 }

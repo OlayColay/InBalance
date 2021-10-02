@@ -77,4 +77,20 @@ public class Player : Actor
     {
         Debug.Log(type.ToString() + " attack performed!");
     }
+
+    /// <summary> The player finds every active enemy on screen </summary>
+    public override void GetEnemies()
+    {
+        GameObject[] currentEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        if (enemies.Length != currentEnemies.Length)
+        {
+            enemies = new Actor[currentEnemies.Length];
+        }
+
+        for(int i = 0; i < currentEnemies.Length; i++)
+        {
+            enemies[i] = currentEnemies[i].GetComponent<Actor>();
+        }
+    }
 }
