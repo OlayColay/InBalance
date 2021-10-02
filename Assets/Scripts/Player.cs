@@ -9,6 +9,18 @@ public class Player : Actor
 
     public int[] elementMeters = {0, 0, 0, 0, 0};
 
+    private int experience;
+    public int EXP {
+        get;
+        set;
+    }
+
+    private int nextLevel;
+    public int MaxEXP {
+        get;
+        set;
+    }
+
     public override int HP {
         set
         {
@@ -23,5 +35,10 @@ public class Player : Actor
             healthScript.MaxValue = value;
             base.MaxHP = value;
         }
+    }
+
+    public void Attack()
+    {
+        Debug.Log("Player attacks!");
     }
 }
