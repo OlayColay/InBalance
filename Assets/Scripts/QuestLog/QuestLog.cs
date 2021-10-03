@@ -20,9 +20,21 @@ public class QuestLog : MonoBehaviour
 
     public GameObject checkBox;
     public GameObject questText;
+
+    public int startYPos = 290;
+    public int startXPosText = -490;
+    public int startXPosCheck = -630;
+    public int spacing = 35;
+    public int backgroundXSize = 300;
+
     // Start is called before the first frame update
     void Awake()
     {
+        if (globals.currQuests != null)
+        {
+            currQuests = globals.currQuests;
+            Debug.Log("here");
+        }
         setQuestBox();
     }
 
@@ -69,13 +81,14 @@ public class QuestLog : MonoBehaviour
             questTexts[x].gameObject.GetComponent<Transform>().SetParent(this.gameObject.GetComponent<Transform>());
             questTexts[x].gameObject.GetComponent<RectTransform>().sizeDelta = new Vector3(220, 30, 1);
             questTexts[x].gameObject.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-            questTexts[x].gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(-490, 290 - 35*x, 1);
+            questTexts[x].gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(startXPosText, startYPos - spacing*x, 1);
             checkboxes.Add(Instantiate(checkBox).GetComponent<Image>());
             checkboxes[x].gameObject.GetComponent<Transform>().SetParent(this.gameObject.GetComponent<Transform>());
             checkboxes[x].gameObject.GetComponent<RectTransform>().sizeDelta = new Vector3(20, 20, 1);
             checkboxes[x].gameObject.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-            checkboxes[x].gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(-630, 290 - 35 * x, 1);
+            checkboxes[x].gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(startXPosCheck, startYPos - spacing * x, 1);
         }
-        Background.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector3(300, 50 +35*currQuests.Count);
+        Background.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector3(300, spacing+ 15 +spacing*currQuests.Count);
+        globals.currQuests = currQuests;
     }
 }
