@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - NPC
+  - Environment
+  - Border
   layers:
   - Default
   - TransparentFX
@@ -46,6 +49,9 @@ TagManager:
     locked: 0
   - name: Environment
     uniqueID: 4202688743
+    locked: 0
+  - name: NPC
+    uniqueID: 1158868697
     locked: 0
   - name: Player
     uniqueID: 3770125567
