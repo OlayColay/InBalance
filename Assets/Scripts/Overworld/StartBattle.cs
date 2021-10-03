@@ -12,7 +12,7 @@ public class StartBattle : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            SceneManager.LoadScene("Battle");
+            SceneManager.LoadSceneAsync("Battle", LoadSceneMode.Additive);
             SceneManager.sceneLoaded += BattleLoaded;
         }
     }
