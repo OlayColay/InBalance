@@ -12,7 +12,7 @@ public class Player : Actor
     public Controls.BattleActions battleActions;
     [SerializeField] private GameObject playerActions;
     
-    private Actor selectedEnemy;
+    public Actor selectedEnemy;
     private int selectedEnemyNum = 0;
     private int attackCount = 0;
 
@@ -114,7 +114,6 @@ public class Player : Actor
 
         timeIndic = GameObject.Find("TimingIndicator");
 
-        StartCoroutine(travelToLoc(new Vector3(0, 0, 0)));
     }
 
     private void Start()
@@ -137,6 +136,7 @@ public class Player : Actor
         Debug.Log(type.ToString() + " attack performed against " + selectedEnemy.name + "!");
         this.type = type;
         StartCoroutine(AttackTimingCoroutine());
+        StartCoroutine(travelToLoc(selectedEnemy.gameObject.GetComponent<Transform>().position));//.GetChild(0).GetComponent<Transform>().position));
         selectedEnemy.TakeDamage(10 + Strength - selectedEnemy.Armor, type);
         attackCount++;
 
@@ -165,6 +165,7 @@ public class Player : Actor
         }
 
         this.gameObject.GetComponent<Transform>().position = endTrans;
+        StartCoroutine(AttackTimingCoroutine());
     }
 
     //Coroutine for checking if player hits the critical strike on an attack
