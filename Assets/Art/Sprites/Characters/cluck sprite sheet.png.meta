@@ -1,0 +1,504 @@
+fileFormatVersion: 2
+guid: 1fab64985068d33458b640a7438e16d3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4191455082118123868
+    second: cluck sprite sheet_0
+  - first:
+      213: 39367282214466000
+    second: cluck sprite sheet_1
+  - first:
+      213: -7963070910459373251
+    second: cluck sprite sheet_2
+  - first:
+      213: 6903049222426781268
+    second: cluck sprite sheet_3
+  - first:
+      213: -890556758594573391
+    second: cluck sprite sheet_4
+  - first:
+      213: -1347694393673988718
+    second: cluck sprite sheet_5
+  - first:
+      213: 8071269926128207654
+    second: cluck sprite sheet_6
+  - first:
+      213: -6611109460881174580
+    second: cluck sprite sheet_7
+  - first:
+      213: 7448319244950832867
+    second: cluck sprite sheet_8
+  - first:
+      213: -1323944901374963132
+    second: cluck sprite sheet_9
+  - first:
+      213: -1601879953685489770
+    second: cluck sprite sheet_10
+  - first:
+      213: -3036964013447919096
+    second: cluck sprite sheet_11
+  - first:
+      213: -3812101581779743092
+    second: cluck sprite sheet_12
+  - first:
+      213: -8426005403169867895
+    second: cluck sprite sheet_13
+  - first:
+      213: -4407864543768486634
+    second: cluck sprite sheet_14
+  - first:
+      213: 813692594856416924
+    second: cluck sprite sheet_15
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: cluck sprite sheet_0
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 367
+        width: 57
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4aee7526fc5f4d5c0800000000000000
+      internalID: -4191455082118123868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cluck sprite sheet_1
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 367
+        width: 57
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d17a28a55cdb8000800000000000000
+      internalID: 39367282214466000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cluck sprite sheet_2
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 367
+        width: 57
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3992d4723d7d7190800000000000000
+      internalID: -7963070910459373251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cluck sprite sheet_3
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 367
+        width: 57
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 456e8c1a1be8ccf50800000000000000
+      internalID: 6903049222426781268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cluck sprite sheet_4
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 270
+        width: 57
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bba5afa85b14a3f0800000000000000
+      internalID: -890556758594573391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cluck sprite sheet_5
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 270
+        width: 57
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 295c64fd6170c4de0800000000000000
+      internalID: -1347694393673988718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cluck sprite sheet_6
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 270
+        width: 57
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6274a210c39e20070800000000000000
+      internalID: 8071269926128207654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cluck sprite sheet_7
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 270
+        width: 57
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccf04f4f8fe9044a0800000000000000
+      internalID: -6611109460881174580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cluck sprite sheet_8
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 170
+        width: 44
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e60001f3eebd5760800000000000000
+      internalID: 7448319244950832867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cluck sprite sheet_9
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 169
+        width: 41
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4421b53702760ade0800000000000000
+      internalID: -1323944901374963132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cluck sprite sheet_10
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 170
+        width: 43
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 697d1c35baaf4c9e0800000000000000
+      internalID: -1601879953685489770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cluck sprite sheet_11
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 169
+        width: 41
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80acacef1598ad5d0800000000000000
+      internalID: -3036964013447919096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cluck sprite sheet_12
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 66
+        width: 41
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8e405a0fc1b81bc0800000000000000
+      internalID: -3812101581779743092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cluck sprite sheet_13
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 67
+        width: 43
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 987b98c8ab0d01b80800000000000000
+      internalID: -8426005403169867895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cluck sprite sheet_14
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 66
+        width: 41
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61dd3a22d8e14d2c0800000000000000
+      internalID: -4407864543768486634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cluck sprite sheet_15
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 67
+        width: 44
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9658c89a11da4b00800000000000000
+      internalID: 813692594856416924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
