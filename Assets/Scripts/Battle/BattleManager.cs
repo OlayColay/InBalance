@@ -116,6 +116,6 @@ public class BattleManager : MonoBehaviour
         player.battleActions.Disable();
         playerActionsUI.SetActive(false);
         currentTurn = Turn.None;
-        SceneManager.UnloadSceneAsync("Battle");
+        // SceneManager.UnloadSceneAsync("Battle");
     }
 }

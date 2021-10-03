@@ -12,8 +12,8 @@ public class StartBattle : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            SceneManager.LoadSceneAsync("Battle", LoadSceneMode.Additive);
-            SceneManager.sceneLoaded += BattleLoaded;
+            SceneManager.LoadScene(0, LoadSceneMode.Additive);
+            // SceneManager.sceneLoaded += BattleLoaded;
         }
     }
 
