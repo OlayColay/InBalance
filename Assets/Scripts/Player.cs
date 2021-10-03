@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using YounGenTech.HealthScript;
 using static Constants;
 
@@ -14,6 +15,9 @@ public class Player : Actor
     private Actor selectedEnemy;
     private int selectedEnemyNum = 0;
     private int attackCount = 0;
+
+    public bool inAttack = false;
+    public GameObject timeIndic;
     /// <summary> The enemy that the player will attack </summary>
     public int SelectedEnemyNum {
         get
@@ -107,6 +111,8 @@ public class Player : Actor
 
         battleActions.DirectionalInput.performed += ctx => SelectedEnemyNum = ctx.ReadValue<float>() < 0 ? 2 : 0;
         battleActions.DirectionalInput.canceled += ctx => SelectedEnemyNum = 1;
+
+        timeIndic = GameObject.Find("TimingIndicator");
     }
 
     private void Start()
@@ -123,8 +129,11 @@ public class Player : Actor
 
     public void Attack(Type type = Type.Physical)
     {
+        if (inAttack)
+            return;
         Debug.Log(type.ToString() + " attack performed against " + selectedEnemy.name + "!");
         this.type = type;
+        StartCoroutine(AttackTimingCoroutine());
         selectedEnemy.TakeDamage(10, type);
         attackCount++;
 
@@ -133,6 +142,46 @@ public class Player : Actor
             battleManager.NextTurn();
             attackCount = 0;
         }
+    }
+
+    IEnumerator AttackTimingCoroutine()
+    {
+        inAttack = true;
+        float totalAttackTime = 3f;
+        float critWindowStart = 1f;
+        float critWindowEnd = 2f;
+        float currTime = 0f;
+        timeIndic.GetComponent<RectTransform>().anchoredPosition = new Vector3(-630, 340, 1);
+        while (currTime < totalAttackTime)
+        {
+            yield return 0;
+            currTime += Time.deltaTime;
+            timeIndic.GetComponent<RectTransform>().anchoredPosition = new Vector3(-630 + (600 * currTime) / totalAttackTime, 340, 1);
+            if (currTime > critWindowStart && currTime < critWindowEnd)
+            {
+                timeIndic.GetComponent<Image>().color = Color.white;
+            }
+            else
+            {
+                timeIndic.GetComponent<Image>().color = Color.black;
+            }
+
+            //TODO add input stuff
+            if (false)
+            //The Player hits the input button
+            {
+                if (currTime > critWindowStart && currTime < critWindowEnd)
+                {
+                    //The Player successfully hit the window
+                }
+                else
+                {
+                    //The Player missed the window
+                }
+            }
+        }
+        Debug.Log("finish");
+        inAttack = false;
     }
 
     /// <summary> The player finds every active enemy on screen </summary>
