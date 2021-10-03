@@ -167,15 +167,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a0cc29e8bdd264c956ddb9d7c5ce26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleManager: {fileID: 0}
+  battleManager: {fileID: 930621988}
   health: 100
   maxHealth: 100
   strength: 10
-  armor: 100
-  wisdom: 100
-  resist: 100
+  armor: 10
+  wisdom: 10
+  resist: 10
   type: 3
-  abilities: []
+  abilities:
+  - {fileID: -3298260198520459821, guid: 9a96356f8571d1e47995163b5604d863, type: 3}
   enemies: []
   isAttacking: 0
 --- !u!212 &86997213
@@ -483,13 +484,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c6506b48cfe10489d4270b4c231869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleManager: {fileID: 0}
+  battleManager: {fileID: 930621988}
   health: 100
   maxHealth: 100
   strength: 10
-  armor: 100
-  wisdom: 100
-  resist: 100
+  armor: 10
+  wisdom: 10
+  resist: 10
   type: 0
   abilities: []
   enemies: []
@@ -1261,15 +1262,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a0cc29e8bdd264c956ddb9d7c5ce26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleManager: {fileID: 0}
+  battleManager: {fileID: 930621988}
   health: 100
   maxHealth: 100
   strength: 10
-  armor: 100
-  wisdom: 100
-  resist: 100
+  armor: 10
+  wisdom: 10
+  resist: 10
   type: 1
-  abilities: []
+  abilities:
+  - {fileID: -3298260198520459821, guid: 1b654c519ee942043829aa843ac546f7, type: 3}
   enemies: []
   isAttacking: 0
 --- !u!114 &985482340
@@ -1360,15 +1362,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a0cc29e8bdd264c956ddb9d7c5ce26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleManager: {fileID: 0}
+  battleManager: {fileID: 930621988}
   health: 100
   maxHealth: 100
   strength: 10
-  armor: 100
-  wisdom: 100
-  resist: 100
+  armor: 10
+  wisdom: 10
+  resist: 10
   type: 4
-  abilities: []
+  abilities:
+  - {fileID: -3298260198520459821, guid: e9df5711d39d2f14698ff66897851bb6, type: 3}
   enemies: []
   isAttacking: 0
 --- !u!212 &1046313700

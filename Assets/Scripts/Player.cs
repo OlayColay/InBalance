@@ -13,6 +13,7 @@ public class Player : Actor
     
     private Actor selectedEnemy;
     private int selectedEnemyNum = 0;
+    private int attackCount = 0;
     /// <summary> The enemy that the player will attack </summary>
     public int SelectedEnemyNum {
         get
@@ -93,6 +94,8 @@ public class Player : Actor
 
     private void Awake()
     {
+        healthScript = GetComponent<Health>();
+        
         battleActions = new Controls().Battle;
 
         battleActions.Physical.performed += ctx => Attack(Type.Physical);
@@ -100,7 +103,7 @@ public class Player : Actor
         battleActions.Water.performed += ctx => Attack(Type.Water);
         battleActions.Earth.performed += ctx => Attack(Type.Earth);
         battleActions.Fire.performed += ctx => Attack(Type.Fire);
-        battleActions.Lightning.performed += ctx => Attack(Type.Lightning);
+        battleActions.Lightning.performed += ctx => Attack(Type.Electric);
 
         battleActions.DirectionalInput.performed += ctx => SelectedEnemyNum = ctx.ReadValue<float>() < 0 ? 2 : 0;
         battleActions.DirectionalInput.canceled += ctx => SelectedEnemyNum = 1;
@@ -121,7 +124,15 @@ public class Player : Actor
     public void Attack(Type type = Type.Physical)
     {
         Debug.Log(type.ToString() + " attack performed against " + selectedEnemy.name + "!");
+        this.type = type;
         selectedEnemy.TakeDamage(10, type);
+        attackCount++;
+
+        if (2 < attackCount)
+        {
+            battleManager.NextTurn();
+            attackCount = 0;
+        }
     }
 
     /// <summary> The player finds every active enemy on screen </summary>

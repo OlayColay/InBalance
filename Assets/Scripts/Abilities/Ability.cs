@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Constants;
 
-public abstract class Ability : MonoBehaviour
+public class Ability : MonoBehaviour
 {
     /// <summary> Type of the ability that the receiving actor could be weak/strong against </summary>
-    public abstract Type type {get;}
+    public Type type = Type.Physical;
 
     /// <summary> Base damage of ability that could be affected by user's and target's types and stats </summary>
-    public abstract int power {get;}
+    public int power = 10;
 
     /// <summary> What the name of the ability is on menus or info screens </summary>
-    public abstract string displayName {get;}
-
+    public string displayName = "Basic Physical";
+    
     /// <summary> Use the ability on the Actor's enemy </summary>
-    public abstract void Use();
+    public void Use(Actor owner, Actor target)
+    {
+        target.TakeDamage(power + owner.Strength - target.Armor, type);
+    }
 }
