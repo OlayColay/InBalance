@@ -22,6 +22,7 @@ public class StartBattle : MonoBehaviour
     private void BattleLoaded(Scene scene, LoadSceneMode mode)
     {
         GameObject.FindObjectOfType<BattleManager>().SpawnOpponents(opponents);
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = false;
         Destroy(this.gameObject);
     }
 }

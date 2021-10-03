@@ -134,6 +134,7 @@ public class BattleManager : MonoBehaviour
         playerActionsUI.SetActive(false);
         currentTurn = Turn.None;
         GameObject.FindObjectOfType<OverworldMovement>().controls.Overworld.Enable();
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = true;
         SceneManager.UnloadSceneAsync("Battle");
     }
 }
