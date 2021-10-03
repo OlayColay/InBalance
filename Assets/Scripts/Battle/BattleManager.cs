@@ -42,6 +42,7 @@ public class BattleManager : MonoBehaviour
                 Debug.LogError("Too many opponents to spawn!");
                 break;
         }
+        player.GetEnemies();
     }
 
     // Start is called before the first frame update
@@ -116,6 +117,7 @@ public class BattleManager : MonoBehaviour
         player.battleActions.Disable();
         playerActionsUI.SetActive(false);
         currentTurn = Turn.None;
-        // SceneManager.UnloadSceneAsync("Battle");
+        GameObject.FindObjectOfType<OverworldMovement>().controls.Overworld.Enable();
+        SceneManager.UnloadSceneAsync("Battle");
     }
 }

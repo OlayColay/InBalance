@@ -119,7 +119,8 @@ public class Player : Actor
 
     private void Start()
     {
-        GetEnemies();
+        battleManager = GameObject.FindObjectOfType<BattleManager>();
+        SelectedEnemyNum = 1;
     }
 
     public void AttackSelected()
@@ -136,7 +137,7 @@ public class Player : Actor
         Debug.Log(type.ToString() + " attack performed against " + selectedEnemy.name + "!");
         this.type = type;
         StartCoroutine(AttackTimingCoroutine());
-        selectedEnemy.TakeDamage(10, type);
+        selectedEnemy.TakeDamage(10 + Strength - selectedEnemy.Armor, type);
         attackCount++;
 
         if (2 < attackCount)
@@ -216,7 +217,7 @@ public class Player : Actor
     {
         GameObject[] currentEnemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-        if (enemies.Length == 0)
+        if (currentEnemies.Length == 0)
         {
             // Victory!
             battleManager.Victory();

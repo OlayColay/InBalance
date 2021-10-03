@@ -5,7 +5,7 @@ using static Constants;
 
 public class Actor : MonoBehaviour
 {
-    public BattleManager battleManager;
+    protected BattleManager battleManager;
 
     [SerializeField] protected int health = 100;
     /// <summary> Health points of the actor </summary>
@@ -104,6 +104,7 @@ public class Actor : MonoBehaviour
 
     private void Start()
     {
+        battleManager = GameObject.FindObjectOfType<BattleManager>();
         GetEnemies();
     }
 
@@ -171,7 +172,7 @@ public class Actor : MonoBehaviour
     {
         if (enemies.Length < 1)
             enemies = new Player[1];
-        enemies[0] = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        enemies[0] = GameObject.FindObjectOfType<Player>();
     }
 
     /// <summary> This is called when the Actor's HP is 0 </summary>
