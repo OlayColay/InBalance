@@ -163,6 +163,7 @@ public class Actor : MonoBehaviour
     {
         int rand = Random.Range(0, abilities.Length);
         abilities[rand].Use(this, enemies[0]);
+        Debug.Log(abilities[rand].displayName + " used against " + enemies[0].name + "!");
     }
     
     /// <summary> Enemies will just get the player as their enemy </summary>

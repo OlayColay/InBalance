@@ -400,7 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c6bd145e7fef74b80fdd1da740db11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _value: 49.7
+  _value: 100
   _maxValue: 100
   _clampHealth: 1
   _disableHealthChange: 0
@@ -488,7 +488,7 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   strength: 10
-  armor: 10
+  armor: 0
   wisdom: 10
   resist: 10
   type: 0
