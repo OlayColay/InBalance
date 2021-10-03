@@ -1414,6 +1414,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 378626576}
     - target: {fileID: 8653869513861000812, guid: e3345c35d6071dd449afc3422a93c71f, type: 3}
+      propertyPath: playerBase
+      value: 
+      objectReference: {fileID: 154786282}
+    - target: {fileID: 8653869513861000812, guid: e3345c35d6071dd449afc3422a93c71f, type: 3}
       propertyPath: battleManager
       value: 
       objectReference: {fileID: 930621988}
