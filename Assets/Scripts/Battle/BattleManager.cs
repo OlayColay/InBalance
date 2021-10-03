@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using static Constants;
 
 public class BattleManager : MonoBehaviour
@@ -41,6 +42,7 @@ public class BattleManager : MonoBehaviour
                 Debug.LogError("Too many opponents to spawn!");
                 break;
         }
+        player.GetEnemies();
     }
 
     // Start is called before the first frame update
@@ -115,5 +117,7 @@ public class BattleManager : MonoBehaviour
         player.battleActions.Disable();
         playerActionsUI.SetActive(false);
         currentTurn = Turn.None;
+        GameObject.FindObjectOfType<OverworldMovement>().controls.Overworld.Enable();
+        SceneManager.UnloadSceneAsync("Battle");
     }
 }

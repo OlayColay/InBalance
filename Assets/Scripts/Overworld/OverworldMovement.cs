@@ -7,7 +7,7 @@ public class OverworldMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private Rigidbody2D rb;
-    private Controls controls;
+    public Controls controls;
     private Vector2 moveDir;
 
     private void Awake()

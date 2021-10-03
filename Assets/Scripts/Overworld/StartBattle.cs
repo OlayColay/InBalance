@@ -12,7 +12,8 @@ public class StartBattle : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            SceneManager.LoadScene("Battle");
+            GameObject.FindObjectOfType<OverworldMovement>().controls.Overworld.Disable();
+            SceneManager.LoadScene(0, LoadSceneMode.Additive);
             SceneManager.sceneLoaded += BattleLoaded;
         }
     }
@@ -20,7 +21,7 @@ public class StartBattle : MonoBehaviour
     // This goes before any Start function in the scene!
     private void BattleLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("Scene loaded");
         GameObject.FindObjectOfType<BattleManager>().SpawnOpponents(opponents);
+        Destroy(this.gameObject);
     }
 }

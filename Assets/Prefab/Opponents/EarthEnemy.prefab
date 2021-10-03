@@ -95,13 +95,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a0cc29e8bdd264c956ddb9d7c5ce26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleManager: {fileID: 0}
-  health: 100
-  maxHealth: 100
+  health: 20
+  maxHealth: 20
   strength: 10
   armor: 10
-  wisdom: 10
-  resist: 10
+  wisdom: 0
+  resist: 0
   type: 3
   abilities:
   - {fileID: -3298260198520459821, guid: 9a96356f8571d1e47995163b5604d863, type: 3}
