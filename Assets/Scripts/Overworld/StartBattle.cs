@@ -20,7 +20,6 @@ public class StartBattle : MonoBehaviour
     // This goes before any Start function in the scene!
     private void BattleLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("Scene loaded");
         GameObject.FindObjectOfType<BattleManager>().SpawnOpponents(opponents);
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using static Constants;
 
 public class BattleManager : MonoBehaviour
@@ -115,5 +116,6 @@ public class BattleManager : MonoBehaviour
         player.battleActions.Disable();
         playerActionsUI.SetActive(false);
         currentTurn = Turn.None;
+        SceneManager.UnloadSceneAsync("Battle");
     }
 }
