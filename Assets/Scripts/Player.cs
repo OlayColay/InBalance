@@ -14,6 +14,8 @@ public class Player : Actor
     private Actor selectedEnemy;
     private int selectedEnemyNum = 0;
     private int attackCount = 0;
+
+    public bool inAttack = false;
     /// <summary> The enemy that the player will attack </summary>
     public int SelectedEnemyNum {
         get
@@ -123,8 +125,11 @@ public class Player : Actor
 
     public void Attack(Type type = Type.Physical)
     {
+        if (inAttack)
+            return;
         Debug.Log(type.ToString() + " attack performed against " + selectedEnemy.name + "!");
         this.type = type;
+        StartCoroutine(AttackTimingCoroutine());
         selectedEnemy.TakeDamage(10, type);
         attackCount++;
 
@@ -133,6 +138,22 @@ public class Player : Actor
             battleManager.NextTurn();
             attackCount = 0;
         }
+    }
+
+    IEnumerator AttackTimingCoroutine()
+    {
+        inAttack = true;
+        float totalAttackTime = 3.0f;
+        float critWindowStart = 1f;
+        float critWindowEnd = 2f;
+        float currTime = 0f;
+        while (currTime < totalAttackTime)
+        {
+            yield return 0;
+            currTime += Time.deltaTime;
+        }
+        Debug.Log("finish");
+        inAttack = false;
     }
 
     /// <summary> The player finds every active enemy on screen </summary>
