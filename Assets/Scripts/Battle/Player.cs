@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -198,6 +199,8 @@ public class Player : Actor
                 {
                     //The Player missed the window
                     Debug.Log("Missed!");
+                    if (attackCount < 2)
+                        selectedEnemy.TakeDamage(0.5f * (10 + Strength - selectedEnemy.Armor), attemptedType);
                     attackCount = 10;
                 }
                 chanceUsed = true;
@@ -223,7 +226,7 @@ public class Player : Actor
     /// <summary> The player finds every active enemy on screen </summary>
     public override void GetEnemies()
     {
-        GameObject[] currentEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] currentEnemies = GameObject.FindGameObjectsWithTag("Enemy").Where(e => e.GetComponent<Actor>().enabled).ToArray();
 
         if (currentEnemies.Length == 0)
         {

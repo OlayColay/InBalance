@@ -193,6 +193,7 @@ public class Actor : MonoBehaviour
     {
         transform.DOMoveY(transform.position.y - 1, 0.5f);
         spriteRenderer.DOFade(0f, 0.5f);
+        this.enabled = false;
         Invoke("SetDead", 0.5f);
 
         foreach (Actor enemy in enemies)
