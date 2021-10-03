@@ -251,7 +251,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 236566868}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.11, y: -4.17, z: 0}
+  m_LocalPosition: {x: 5.2, y: -3.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1884325971}
@@ -720,7 +720,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 635671428}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 704550904}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: RestSelected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &635671428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1318,7 +1330,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1296774578}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.6999998, y: 2.18, z: 0}
+  m_LocalPosition: {x: 5.79, y: 3.2299879, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1884325971}
@@ -1419,10 +1431,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 154786282}
     - target: {fileID: 8653869513861000812, guid: e3345c35d6071dd449afc3422a93c71f, type: 3}
-      propertyPath: battleManager
-      value: 
-      objectReference: {fileID: 930621988}
-    - target: {fileID: 8653869513861000812, guid: e3345c35d6071dd449afc3422a93c71f, type: 3}
       propertyPath: playerActions
       value: 
       objectReference: {fileID: 968448758}
@@ -1434,22 +1442,6 @@ PrefabInstance:
       propertyPath: OnChangedMaxHealth.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 530587806}
-    - target: {fileID: 8653869513861000813, guid: e3345c35d6071dd449afc3422a93c71f, type: 3}
-      propertyPath: OnChangedHealth.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: set_value
-      objectReference: {fileID: 0}
-    - target: {fileID: 8653869513861000813, guid: e3345c35d6071dd449afc3422a93c71f, type: 3}
-      propertyPath: OnChangedMaxHealth.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: set_maxValue
-      objectReference: {fileID: 0}
-    - target: {fileID: 8653869513861000813, guid: e3345c35d6071dd449afc3422a93c71f, type: 3}
-      propertyPath: OnChangedHealth.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.UI.Slider, UnityEngine.UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 8653869513861000813, guid: e3345c35d6071dd449afc3422a93c71f, type: 3}
-      propertyPath: OnChangedMaxHealth.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.UI.Slider, UnityEngine.UI
-      objectReference: {fileID: 0}
     - target: {fileID: 8653869513861000814, guid: e3345c35d6071dd449afc3422a93c71f, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1493,10 +1485,6 @@ PrefabInstance:
     - target: {fileID: 8653869513861000814, guid: e3345c35d6071dd449afc3422a93c71f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8653869513861000815, guid: e3345c35d6071dd449afc3422a93c71f, type: 3}
-      propertyPath: m_SortingOrder
-      value: 55
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3345c35d6071dd449afc3422a93c71f, type: 3}
@@ -1640,7 +1628,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1994834228}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.1799998, y: -0.95, z: 0}
+  m_LocalPosition: {x: 4.2699995, y: 0.099987805, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1884325971}

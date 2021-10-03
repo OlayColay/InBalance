@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 using static Constants;
 
 public class Actor : MonoBehaviour
 {
     protected BattleManager battleManager;
+    public SpriteRenderer spriteRenderer;
 
     [SerializeField] protected int health = 100;
     /// <summary> Health points of the actor </summary>
@@ -117,6 +119,14 @@ public class Actor : MonoBehaviour
             this.HP -= (int)(damageAmount * weakMultiplier);
         else
             this.HP -= (int)damageAmount;
+
+        spriteRenderer.color = Color.red;
+        Invoke("ResetColor", 0.5f);
+    }
+
+    private void ResetColor()
+    {
+        spriteRenderer.color = Color.white;
     }
 
     /// <summary> Return true if the actor is resistant to the opposingType </summary>
@@ -162,9 +172,12 @@ public class Actor : MonoBehaviour
     /// <summary> Enemies pick a random ability of theirs to attack with </summary>
     public virtual void Attack()
     {
+        Vector3 startPosition = transform.position;
+        transform.DOMove(enemies[0].transform.GetChild(0).position, 0.5f);
         int rand = Random.Range(0, abilities.Length);
         abilities[rand].Use(this, enemies[0]);
         Debug.Log(abilities[rand].displayName + " used against " + enemies[0].name + "!");
+        // transform.DOMove(startPosition, 0.5f);
     }
     
     /// <summary> Enemies will just get the player as their enemy </summary>
@@ -178,11 +191,18 @@ public class Actor : MonoBehaviour
     /// <summary> This is called when the Actor's HP is 0 </summary>
     public virtual void Die()
     {
-        gameObject.SetActive(false);
+        transform.DOMoveY(transform.position.y - 1, 0.5f);
+        spriteRenderer.DOFade(0f, 0.5f);
+        Invoke("SetDead", 0.5f);
 
         foreach (Actor enemy in enemies)
         {
             enemy.GetEnemies();
         }
+    }
+
+    private void SetDead()
+    {
+        gameObject.SetActive(false);
     }
 }

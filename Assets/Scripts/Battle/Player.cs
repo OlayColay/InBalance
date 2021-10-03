@@ -54,8 +54,9 @@ public class Player : Actor
                     break;
                 default:
                     Debug.LogError("SelectedEnemyNum is being set to in invalid number: " + value);
-                    break;
+                    return;
             }
+            if (battleActions.enabled) transform.DOMove(selectedEnemy.transform.GetChild(0).position, 0.5f);
         }
     }
 
@@ -91,6 +92,7 @@ public class Player : Actor
     public override int HP {
         set
         {
+            value = Mathf.Min(value, MaxHP);
             healthScript.Value = value;
             base.HP = value;
         }
@@ -139,6 +141,13 @@ public class Player : Actor
         StartCoroutine(AttackTimingCoroutine());
     }
 
+    public void RestSelected()
+    {
+        Debug.Log("Player rests!");
+        HP += MaxHP / 3;
+        battleManager.NextTurn();
+    }
+
     public void Attack(Type type = Type.Physical)
     {
         attemptedType = type;
@@ -180,7 +189,6 @@ public class Player : Actor
                 if (currTime > critWindowStart && currTime < critWindowEnd)
                 {
                     Debug.Log(attemptedType.ToString() + " attack performed against " + selectedEnemy.name + "!");
-                    transform.DOMove(selectedEnemy.transform.GetChild(0).position, 0.5f);
                     this.type = attemptedType;
                     selectedEnemy.TakeDamage(10 + Strength - selectedEnemy.Armor, attemptedType);
                     attackHit = true;
@@ -203,7 +211,7 @@ public class Player : Actor
         if (!attackHit || 2 < attackCount)
         {
             transform.DOMove(playerBase.position, 0.5f);
-            battleManager.NextTurn();
+            battleManager.Invoke("NextTurn", 1f);
             attackCount = 0;
         }
         else
@@ -234,5 +242,10 @@ public class Player : Actor
 
         // So that the currently selected enemy refreshes
         SelectedEnemyNum = SelectedEnemyNum;
+    }
+
+    public override void Die()
+    {
+        gameObject.SetActive(false);    
     }
 }
