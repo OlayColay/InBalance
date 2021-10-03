@@ -144,6 +144,11 @@ public class Player : Actor
         }
     }
 
+    //Coroutine for checking if player hits the critical strike on an attack
+    //All values are hardcoded for now, not sure if they will change for each attack
+    //The totalAttackTime is the time of the animation
+    //CritWindowstart and critWindowEnd are when the crit window starts and ends
+    //the timeIndic is a temporary UI time indicator for visualizations before animations are finished
     IEnumerator AttackTimingCoroutine()
     {
         inAttack = true;
@@ -151,12 +156,12 @@ public class Player : Actor
         float critWindowStart = 1f;
         float critWindowEnd = 2f;
         float currTime = 0f;
-        timeIndic.GetComponent<RectTransform>().anchoredPosition = new Vector3(-630, 340, 1);
+        timeIndic.GetComponent<RectTransform>().anchoredPosition = new Vector3(-630, 260, 1);
         while (currTime < totalAttackTime)
         {
             yield return 0;
             currTime += Time.deltaTime;
-            timeIndic.GetComponent<RectTransform>().anchoredPosition = new Vector3(-630 + (600 * currTime) / totalAttackTime, 340, 1);
+            timeIndic.GetComponent<RectTransform>().anchoredPosition = new Vector3(-630 + (600 * currTime) / totalAttackTime, 260, 1);
             if (currTime > critWindowStart && currTime < critWindowEnd)
             {
                 timeIndic.GetComponent<Image>().color = Color.white;
