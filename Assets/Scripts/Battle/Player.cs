@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using YounGenTech.HealthScript;
+using DG.Tweening;
 using static Constants;
 
 public class Player : Actor
@@ -11,6 +12,12 @@ public class Player : Actor
     private Health healthScript;
     public Controls.BattleActions battleActions;
     [SerializeField] private GameObject playerActions;
+
+    public Transform playerBase;
+
+    /// <summary> The type that the button a player pushes is for </summary>
+    private Type attemptedType = Type.Physical;
+    private bool attemptAttack = false;
     
     public Actor selectedEnemy;
     private int selectedEnemyNum = 0;
@@ -18,6 +25,7 @@ public class Player : Actor
 
     public bool inAttack = false;
     public GameObject timeIndic;
+
     /// <summary> The enemy that the player will attack </summary>
     public int SelectedEnemyNum {
         get
@@ -127,45 +135,14 @@ public class Player : Actor
         Debug.Log("Player attacks!");
         battleActions.Enable();
         playerActions.SetActive(false);
+        transform.DOMove(selectedEnemy.transform.GetChild(0).position, 0.5f);
+        StartCoroutine(AttackTimingCoroutine());
     }
 
     public void Attack(Type type = Type.Physical)
     {
-        if (inAttack)
-            return;
-        Debug.Log(type.ToString() + " attack performed against " + selectedEnemy.name + "!");
-        this.type = type;
-        StartCoroutine(AttackTimingCoroutine());
-        StartCoroutine(travelToLoc(selectedEnemy.gameObject.GetComponent<Transform>().position));//.GetChild(0).GetComponent<Transform>().position));
-        selectedEnemy.TakeDamage(10 + Strength - selectedEnemy.Armor, type);
-        attackCount++;
-
-        if (2 < attackCount)
-        {
-            battleManager.NextTurn();
-            attackCount = 0;
-        }
-    }
-
-    IEnumerator travelToLoc(Vector3 Location)
-    {
-        Debug.Log("here");
-        float currTime = 0f;
-        float moveDuration = 1f;
-        Vector3 startTrans = this.gameObject.GetComponent<Transform>().position;
-        Vector3 endTrans = Location;
-
-        float valueToLerp;
-
-        while (currTime < moveDuration)
-        {
-            this.gameObject.GetComponent<Transform>().position = new Vector3(Mathf.Lerp(startTrans.x, endTrans.x, currTime / moveDuration), Mathf.Lerp(startTrans.y, endTrans.y, currTime / moveDuration), 1);
-            yield return 0;
-            currTime += Time.deltaTime;
-        }
-
-        this.gameObject.GetComponent<Transform>().position = endTrans;
-        StartCoroutine(AttackTimingCoroutine());
+        attemptedType = type;
+        attemptAttack = true;
     }
 
     //Coroutine for checking if player hits the critical strike on an attack
@@ -180,6 +157,8 @@ public class Player : Actor
         float critWindowStart = 1f;
         float critWindowEnd = 2f;
         float currTime = 0f;
+        bool attackHit = false;
+        bool chanceUsed = false;
         Vector3 startingPosition = timeIndic.GetComponent<RectTransform>().anchoredPosition;
         while (currTime < totalAttackTime)
         {
@@ -195,22 +174,42 @@ public class Player : Actor
                 timeIndic.GetComponent<Image>().color = Color.black;
             }
 
-            //TODO add input stuff
-            if (false)
             //The Player hits the input button
+            if (!chanceUsed && attemptAttack)
             {
                 if (currTime > critWindowStart && currTime < critWindowEnd)
                 {
-                    //The Player successfully hit the window
+                    Debug.Log(attemptedType.ToString() + " attack performed against " + selectedEnemy.name + "!");
+                    transform.DOMove(selectedEnemy.transform.GetChild(0).position, 0.5f);
+                    this.type = attemptedType;
+                    selectedEnemy.TakeDamage(10 + Strength - selectedEnemy.Armor, attemptedType);
+                    attackHit = true;
+                    attackCount++;
                 }
                 else
                 {
                     //The Player missed the window
+                    Debug.Log("Missed!");
+                    attackCount = 10;
                 }
+                chanceUsed = true;
+                attemptAttack = false;
             }
         }
-        Debug.Log("finish");
+        // Debug.Log("finish");
+
         inAttack = false;
+        timeIndic.GetComponent<RectTransform>().anchoredPosition = startingPosition;
+        if (!attackHit || 2 < attackCount)
+        {
+            transform.DOMove(playerBase.position, 0.5f);
+            battleManager.NextTurn();
+            attackCount = 0;
+        }
+        else
+        {
+            StartCoroutine(AttackTimingCoroutine());
+        }
     }
 
     /// <summary> The player finds every active enemy on screen </summary>

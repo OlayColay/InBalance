@@ -66,12 +66,28 @@ public class BattleManager : MonoBehaviour
                 EnemyTurn(0);
                 break;
             case Turn.Enemy1:
-                currentTurn = player.enemies.Length < 2 ? Turn.EnemiesToPlayer : Turn.Enemy2;
-                EnemyTurn(1);
+                if (player.enemies.Length < 2)
+                {
+                    currentTurn = Turn.EnemiesToPlayer;
+                    EnemyToPlayerTurn();
+                }
+                else
+                {
+                    currentTurn = Turn.Enemy2;
+                    EnemyTurn(1);
+                }
                 break;
             case Turn.Enemy2:
-                currentTurn = player.enemies.Length < 3 ? Turn.EnemiesToPlayer : Turn.Enemy3;
-                EnemyTurn(2);
+                if (player.enemies.Length < 3)
+                {
+                    currentTurn = Turn.EnemiesToPlayer;
+                    EnemyToPlayerTurn();
+                }
+                else
+                {
+                    currentTurn = Turn.Enemy3;
+                    EnemyTurn(2);
+                }
                 break;
             case Turn.Enemy3:
                 currentTurn = Turn.EnemiesToPlayer;

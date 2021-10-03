@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class StartBattle : MonoBehaviour
 {
-    /// <summary> The opponents that the playe will fight in the battle </summary>
+    /// <summary> The opponents that the player will fight in the battle </summary>
     public GameObject[] opponents;
 
     private void OnTriggerEnter2D(Collider2D other)
