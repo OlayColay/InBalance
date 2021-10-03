@@ -26,9 +26,15 @@ public class QuestLog : MonoBehaviour
     public int startXPosCheck = -630;
     public int spacing = 35;
     public int backgroundXSize = 300;
+
     // Start is called before the first frame update
     void Awake()
     {
+        if (globals.currQuests != null)
+        {
+            currQuests = globals.currQuests;
+            Debug.Log("here");
+        }
         setQuestBox();
     }
 
@@ -83,5 +89,6 @@ public class QuestLog : MonoBehaviour
             checkboxes[x].gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(startXPosCheck, startYPos - spacing * x, 1);
         }
         Background.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector3(300, spacing+ 15 +spacing*currQuests.Count);
+        globals.currQuests = currQuests;
     }
 }
