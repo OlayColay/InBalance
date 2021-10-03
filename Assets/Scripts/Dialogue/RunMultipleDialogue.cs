@@ -33,6 +33,7 @@ public class RunMultipleDialogue : MonoBehaviour
     //starts with row start, then reads num rows
     public void loadDialogue(int start, int num)
     {
+        diaMessages.Clear();
         for (int x = 0; x < num; x++)
         {
             diaMessages.Add(CsvToDialogue.pullColumn(start + x));

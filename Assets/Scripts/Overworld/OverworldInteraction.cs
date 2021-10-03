@@ -10,6 +10,7 @@ public class OverworldInteraction : MonoBehaviour
     private Controls controls;
     private bool interactEnabled;
     private const string defaultReminderText = "Press Space to Interact with ";
+    [SerializeField] private int rowNum;
 
     private void Awake()
     {
@@ -27,7 +28,9 @@ public class OverworldInteraction : MonoBehaviour
                 }
                 else
                 {
+                    dialogueBox.GetComponent<RunMultipleDialogue>().loadDialogue(rowNum, 1);
                     dialogueBox.SetActive(true);
+                    dialogueBox.GetComponent<RunMultipleDialogue>().startDialogue();
                     interactReminder.gameObject.SetActive(false);
                 }
             }
