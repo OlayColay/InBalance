@@ -9,11 +9,39 @@ public class BattleManager : MonoBehaviour
     public EventSystem eventSystem;
     public Player player;
 
+    /// <summary> Player's prefab. Should be Assets/Prefabs/BattlePlayer.prefab </summary>
+    public GameObject playerPrefab;
+
     /// <summary> Player's turn, so open necessary UI and let player control in it </summary>
     public Turn currentTurn = Turn.None;
 
     /// <summary> UI that player uses to select Attack, Flee, etc. </summary>
     public GameObject playerActionsUI;
+
+    /// <summary> Spawnpoints of combatants. Player's is the first in the array </summary>
+    public Transform[] spawnpoints;
+
+    public void SpawnOpponents(GameObject[] opponents)
+    {
+        switch(opponents.Length)
+        {
+            case 1:
+                Instantiate(opponents[0], spawnpoints[2].position, Quaternion.identity);
+                break;
+            case 2:
+                Instantiate(opponents[0], spawnpoints[1].position, Quaternion.identity);
+                Instantiate(opponents[1], spawnpoints[2].position, Quaternion.identity);
+                break;
+            case 3:
+                Instantiate(opponents[0], spawnpoints[1].position, Quaternion.identity);
+                Instantiate(opponents[1], spawnpoints[2].position, Quaternion.identity);
+                Instantiate(opponents[2], spawnpoints[3].position, Quaternion.identity);
+                break;
+            default:
+                Debug.LogError("Too many opponents to spawn!");
+                break;
+        }
+    }
 
     // Start is called before the first frame update
     private void Start()
@@ -45,6 +73,7 @@ public class BattleManager : MonoBehaviour
                 break;
             case Turn.Enemy3:
                 currentTurn = Turn.EnemiesToPlayer;
+                EnemyToPlayerTurn();
                 break;
             case Turn.EnemiesToPlayer:
                 currentTurn = Turn.Player;
@@ -74,10 +103,17 @@ public class BattleManager : MonoBehaviour
         Invoke("NextTurn", 1);
     }
 
+    /// <summary> Turn after player and before enemy. Some dialouge could happen here </summary>
+    private void EnemyToPlayerTurn()
+    {
+        NextTurn();
+    }
+
     /// <summary> TODO: End the battle, do whatever victory animations happen, and return to overworld </summary>
     public void Victory()
     {
         player.battleActions.Disable();
+        playerActionsUI.SetActive(false);
         currentTurn = Turn.None;
     }
 }

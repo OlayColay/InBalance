@@ -156,12 +156,12 @@ public class Player : Actor
         float critWindowStart = 1f;
         float critWindowEnd = 2f;
         float currTime = 0f;
-        timeIndic.GetComponent<RectTransform>().anchoredPosition = new Vector3(-630, 260, 1);
+        Vector3 startingPosition = timeIndic.GetComponent<RectTransform>().anchoredPosition;
         while (currTime < totalAttackTime)
         {
             yield return 0;
             currTime += Time.deltaTime;
-            timeIndic.GetComponent<RectTransform>().anchoredPosition = new Vector3(-630 + (600 * currTime) / totalAttackTime, 260, 1);
+            timeIndic.GetComponent<RectTransform>().anchoredPosition = startingPosition + new Vector3((600 * currTime) / totalAttackTime, 0, 0);
             if (currTime > critWindowStart && currTime < critWindowEnd)
             {
                 timeIndic.GetComponent<Image>().color = Color.white;
