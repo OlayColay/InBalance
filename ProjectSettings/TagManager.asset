@@ -7,6 +7,7 @@ TagManager:
   - NPC
   - Environment
   - Border
+  - Interactable
   layers:
   - Default
   - TransparentFX
@@ -49,6 +50,9 @@ TagManager:
     locked: 0
   - name: Environment
     uniqueID: 4202688743
+    locked: 0
+  - name: Interactable
+    uniqueID: 3922180313
     locked: 0
   - name: NPC
     uniqueID: 1158868697
