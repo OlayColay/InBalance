@@ -113,6 +113,8 @@ public class Player : Actor
         battleActions.DirectionalInput.canceled += ctx => SelectedEnemyNum = 1;
 
         timeIndic = GameObject.Find("TimingIndicator");
+
+        StartCoroutine(travelToLoc(new Vector3(0, 0, 0)));
     }
 
     private void Start()
@@ -142,6 +144,26 @@ public class Player : Actor
             battleManager.NextTurn();
             attackCount = 0;
         }
+    }
+
+    IEnumerator travelToLoc(Vector3 Location)
+    {
+        Debug.Log("here");
+        float currTime = 0f;
+        float moveDuration = 1f;
+        Vector3 startTrans = this.gameObject.GetComponent<Transform>().position;
+        Vector3 endTrans = Location;
+
+        float valueToLerp;
+
+        while (currTime < moveDuration)
+        {
+            this.gameObject.GetComponent<Transform>().position = new Vector3(Mathf.Lerp(startTrans.x, endTrans.x, currTime / moveDuration), Mathf.Lerp(startTrans.y, endTrans.y, currTime / moveDuration), 1);
+            yield return 0;
+            currTime += Time.deltaTime;
+        }
+
+        this.gameObject.GetComponent<Transform>().position = endTrans;
     }
 
     //Coroutine for checking if player hits the critical strike on an attack
