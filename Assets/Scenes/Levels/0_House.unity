@@ -286,6 +286,10 @@ PrefabInstance:
       value: -0.6
       objectReference: {fileID: 0}
     - target: {fileID: 6615745123452148771, guid: 0acfed4e998491c49aaae8d3653bc0a0, type: 3}
+      propertyPath: rowNum
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 6615745123452148771, guid: 0acfed4e998491c49aaae8d3653bc0a0, type: 3}
       propertyPath: dialogueBox
       value: 
       objectReference: {fileID: 773547581}
@@ -566,6 +570,10 @@ PrefabInstance:
     - target: {fileID: 6615745123452148770, guid: 0acfed4e998491c49aaae8d3653bc0a0, type: 3}
       propertyPath: m_Offset.y
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6615745123452148771, guid: 0acfed4e998491c49aaae8d3653bc0a0, type: 3}
+      propertyPath: rowNum
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6615745123452148771, guid: 0acfed4e998491c49aaae8d3653bc0a0, type: 3}
       propertyPath: dialogueBox
@@ -1146,6 +1154,8 @@ GameObject:
   - component: {fileID: 773547582}
   - component: {fileID: 773547584}
   - component: {fileID: 773547583}
+  - component: {fileID: 773547586}
+  - component: {fileID: 773547585}
   m_Layer: 0
   m_Name: TempDialogueBox
   m_TagString: Untagged
@@ -1211,6 +1221,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 773547581}
   m_CullTransparentMesh: 1
+--- !u!114 &773547585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773547581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd33b0dff1dd0a4a9e40a1141d20f99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitTime: 0.025
+  inWrite: 0
+  hitButt: 0
+--- !u!114 &773547586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773547581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed11586c9971694aa2c250fdfcc6014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  diaMessages: []
+  diaText: {fileID: 1895079585}
+  currDia: 0
 --- !u!4 &800186852 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6615745123452148775, guid: 0acfed4e998491c49aaae8d3653bc0a0, type: 3}
@@ -1375,6 +1415,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6615745123452148771, guid: 0acfed4e998491c49aaae8d3653bc0a0, type: 3}
+      propertyPath: rowNum
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6615745123452148771, guid: 0acfed4e998491c49aaae8d3653bc0a0, type: 3}
       propertyPath: dialogueBox
       value: 
       objectReference: {fileID: 773547581}
@@ -1534,6 +1578,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1266067357}
     m_Modifications:
+    - target: {fileID: 6615745123452148771, guid: 0acfed4e998491c49aaae8d3653bc0a0, type: 3}
+      propertyPath: rowNum
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 6615745123452148771, guid: 0acfed4e998491c49aaae8d3653bc0a0, type: 3}
       propertyPath: dialogueBox
       value: 
@@ -1974,6 +2022,10 @@ PrefabInstance:
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6615745123452148771, guid: 0acfed4e998491c49aaae8d3653bc0a0, type: 3}
+      propertyPath: rowNum
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6615745123452148771, guid: 0acfed4e998491c49aaae8d3653bc0a0, type: 3}
       propertyPath: dialogueBox
       value: 
       objectReference: {fileID: 773547581}
@@ -2405,8 +2457,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -525, y: 100}
-  m_SizeDelta: {x: 650, y: 120}
+  m_AnchoredPosition: {x: -11.3114, y: 7.2192}
+  m_SizeDelta: {x: 1677.3774, y: 305.5615}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1895079585
 MonoBehaviour:
@@ -2464,6 +2516,10 @@ PrefabInstance:
     - target: {fileID: 6615745123452148770, guid: 0acfed4e998491c49aaae8d3653bc0a0, type: 3}
       propertyPath: m_Offset.y
       value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6615745123452148771, guid: 0acfed4e998491c49aaae8d3653bc0a0, type: 3}
+      propertyPath: rowNum
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 6615745123452148771, guid: 0acfed4e998491c49aaae8d3653bc0a0, type: 3}
       propertyPath: dialogueBox
@@ -2541,6 +2597,10 @@ PrefabInstance:
     - target: {fileID: 6615745123452148770, guid: 0acfed4e998491c49aaae8d3653bc0a0, type: 3}
       propertyPath: m_Offset.x
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6615745123452148771, guid: 0acfed4e998491c49aaae8d3653bc0a0, type: 3}
+      propertyPath: rowNum
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6615745123452148771, guid: 0acfed4e998491c49aaae8d3653bc0a0, type: 3}
       propertyPath: dialogueBox
@@ -2840,6 +2900,10 @@ PrefabInstance:
     - target: {fileID: 6615745123452148770, guid: 0acfed4e998491c49aaae8d3653bc0a0, type: 3}
       propertyPath: m_Offset.y
       value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6615745123452148771, guid: 0acfed4e998491c49aaae8d3653bc0a0, type: 3}
+      propertyPath: rowNum
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6615745123452148771, guid: 0acfed4e998491c49aaae8d3653bc0a0, type: 3}
       propertyPath: dialogueBox
