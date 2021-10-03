@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 119664165}
   - component: {fileID: 2066051035}
   m_Layer: 0
-  m_Name: TempPlayer
+  m_Name: Neko
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -191,7 +191,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.78125, y: 0.22739935}
+  m_Size: {x: 0.6, y: 0.22739935}
   m_EdgeRadius: 0
 --- !u!95 &2066051035
 Animator:
