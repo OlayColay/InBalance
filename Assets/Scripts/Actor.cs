@@ -51,7 +51,7 @@ public class Actor : MonoBehaviour
         }
     }
 
-    [SerializeField] protected int armor = 100;
+    [SerializeField] protected int armor = 10;
     /// <summary> Physical defense of the actor </summary>
     public int Armor {
         get 
@@ -64,7 +64,7 @@ public class Actor : MonoBehaviour
         }
     }
 
-    [SerializeField] protected int wisdom = 100;
+    [SerializeField] protected int wisdom = 10;
     /// <summary> Elemental attack of the actor </summary>
     public int Wisdom {
         get 
@@ -77,7 +77,7 @@ public class Actor : MonoBehaviour
         }
     }
 
-    [SerializeField] protected int resist = 100;
+    [SerializeField] protected int resist = 10;
     /// <summary> Elemental defense of the actor </summary>
     public int Resist {
         get 
@@ -124,15 +124,15 @@ public class Actor : MonoBehaviour
         switch(type)
         {
             case Type.Air:
-                return opposingType == Type.Water || opposingType == Type.Earth;
+                return opposingType == Type.Water || opposingType == Type.Earth || opposingType == Type.Air;
             case Type.Water:
-                return opposingType == Type.Earth || opposingType == Type.Fire;
+                return opposingType == Type.Earth || opposingType == Type.Fire || opposingType == Type.Water;
             case Type.Earth:
-                return opposingType == Type.Fire || opposingType == Type.Lightning;
+                return opposingType == Type.Fire || opposingType == Type.Electric || opposingType == Type.Earth;
             case Type.Fire:
-                return opposingType == Type.Lightning || opposingType == Type.Air;
-            case Type.Lightning:
-                return opposingType == Type.Air || opposingType == Type.Water;
+                return opposingType == Type.Electric || opposingType == Type.Air || opposingType == Type.Fire;
+            case Type.Electric:
+                return opposingType == Type.Air || opposingType == Type.Water || opposingType == Type.Electric;
             default:
                 return false;
         }
@@ -144,14 +144,14 @@ public class Actor : MonoBehaviour
         switch(type)
         {
             case Type.Air:
-                return opposingType == Type.Fire || opposingType == Type.Lightning;
+                return opposingType == Type.Fire || opposingType == Type.Electric;
             case Type.Water:
-                return opposingType == Type.Lightning || opposingType == Type.Air;
+                return opposingType == Type.Electric || opposingType == Type.Air;
             case Type.Earth:
                 return opposingType == Type.Air || opposingType == Type.Water;
             case Type.Fire:
                 return opposingType == Type.Water || opposingType == Type.Earth;
-            case Type.Lightning:
+            case Type.Electric:
                 return opposingType == Type.Earth || opposingType == Type.Fire;
             default:
                 return false;
@@ -162,7 +162,8 @@ public class Actor : MonoBehaviour
     public virtual void Attack()
     {
         int rand = Random.Range(0, abilities.Length);
-        abilities[rand].Use();
+        abilities[rand].Use(this, enemies[0]);
+        Debug.Log(abilities[rand].displayName + " used against " + enemies[0].name + "!");
     }
     
     /// <summary> Enemies will just get the player as their enemy </summary>

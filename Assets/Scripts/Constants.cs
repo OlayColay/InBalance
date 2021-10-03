@@ -11,7 +11,7 @@ public static class Constants : object
         Water,
         Earth,
         Fire,
-        Lightning
+        Electric
     }
 
     public enum Turn

@@ -33,12 +33,15 @@ public class BattleManager : MonoBehaviour
                 break;
             case Turn.PlayerToEnemies:
                 currentTurn = Turn.Enemy1;
+                EnemyTurn(0);
                 break;
             case Turn.Enemy1:
                 currentTurn = player.enemies.Length < 2 ? Turn.EnemiesToPlayer : Turn.Enemy2;
+                EnemyTurn(1);
                 break;
             case Turn.Enemy2:
                 currentTurn = player.enemies.Length < 3 ? Turn.EnemiesToPlayer : Turn.Enemy3;
+                EnemyTurn(2);
                 break;
             case Turn.Enemy3:
                 currentTurn = Turn.EnemiesToPlayer;
@@ -61,6 +64,14 @@ public class BattleManager : MonoBehaviour
     private void PlayerToEnemyTurn()
     {
         player.battleActions.Disable();
+        NextTurn();
+    }
+
+    /// <summary> An enemy's turn </summary>
+    private void EnemyTurn(int enemyNum)
+    {
+        player.enemies[enemyNum].Attack();
+        Invoke("NextTurn", 1);
     }
 
     /// <summary> TODO: End the battle, do whatever victory animations happen, and return to overworld </summary>
