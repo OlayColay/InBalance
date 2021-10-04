@@ -224,6 +224,7 @@ MonoBehaviour:
   enemies: []
   isAttacking: 0
   startPosition: {x: 0, y: 0, z: 0}
+  animator: {fileID: 2760951878459114422}
   playerActionsUI: {fileID: 0}
   playerBase: {fileID: 0}
   selectedEnemy: {fileID: 0}

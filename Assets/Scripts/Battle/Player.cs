@@ -11,6 +11,7 @@ using static Constants;
 public class Player : Actor
 {
     private Health healthScript;
+    public Animator animator;
     public Controls.BattleActions battleActions;
     public Controls.DefendActions defendActions;
     [SerializeField] private GameObject playerActionsUI;
@@ -179,14 +180,15 @@ public class Player : Actor
     IEnumerator AttackTimingCoroutine()
     {
         float totalAttackTime = 3f;
-        float critWindowStart = 1f;
-        float critWindowEnd = 2f;
+        float critWindowStart = 0.5f;
+        float critWindowEnd = 0.92f;
         float currTime = 0f;
         bool attackHit = false;
         bool chanceUsed = false;
         Vector3 startingPosition = timeIndic.GetComponent<RectTransform>().anchoredPosition;
 
         attemptAction = false;
+        animator.SetTrigger("StartAttack");
 
         while (currTime < totalAttackTime)
         {
@@ -208,8 +210,8 @@ public class Player : Actor
                 if (currTime > critWindowStart && currTime < critWindowEnd)
                 {
                     Debug.Log(attemptedType.ToString() + " attack performed against " + selectedEnemy.name + "!");
+                    animator.SetTrigger("Attack");
                     this.type = attemptedType;
-                    selectedEnemy.TakeDamage(10 + Strength - selectedEnemy.Armor, attemptedType);
                     attackHit = true;
                     attackCount++;
                 }
@@ -310,5 +312,11 @@ public class Player : Actor
     public override void Die()
     {
         gameObject.SetActive(false);    
+    }
+
+    // Called by attack animation
+    public void GiveDamage()
+    {
+        selectedEnemy.TakeDamage(10 + Strength - selectedEnemy.Armor, attemptedType);
     }
 }
