@@ -11,6 +11,7 @@ using static Constants;
 public class Player : Actor
 {
     private Health healthScript;
+    public Animator animator;
     public Controls.BattleActions battleActions;
     public Controls.DefendActions defendActions;
     [SerializeField] private GameObject playerActionsUI;
@@ -166,9 +167,13 @@ public class Player : Actor
         if (invulnerable)
         {
             damageAmount /= 2;
-            invulnerable = false;
         }
         base.TakeDamage(damageAmount, damageType);
+        if (invulnerable)
+        {
+            spriteRenderer.color = Color.white;
+            invulnerable = false;
+        }
     }
 
     //Coroutine for checking if player hits the critical strike on an attack
@@ -179,14 +184,15 @@ public class Player : Actor
     IEnumerator AttackTimingCoroutine()
     {
         float totalAttackTime = 3f;
-        float critWindowStart = 1f;
-        float critWindowEnd = 2f;
+        float critWindowStart = 0.5f;
+        float critWindowEnd = 0.92f;
         float currTime = 0f;
         bool attackHit = false;
         bool chanceUsed = false;
         Vector3 startingPosition = timeIndic.GetComponent<RectTransform>().anchoredPosition;
 
         attemptAction = false;
+        animator.SetTrigger("StartAttack");
 
         while (currTime < totalAttackTime)
         {
@@ -208,8 +214,8 @@ public class Player : Actor
                 if (currTime > critWindowStart && currTime < critWindowEnd)
                 {
                     Debug.Log(attemptedType.ToString() + " attack performed against " + selectedEnemy.name + "!");
+                    animator.SetTrigger("Attack");
                     this.type = attemptedType;
-                    selectedEnemy.TakeDamage(10 + Strength - selectedEnemy.Armor, attemptedType);
                     attackHit = true;
                     attackCount++;
                 }
@@ -267,8 +273,8 @@ public class Player : Actor
     public IEnumerator BlockTimingCoroutine(int damage, Type attackType, Actor owner)
     {
         float totalAttackTime = 3f;
-        float critWindowStart = 1f;
-        float critWindowEnd = 2f;
+        float critWindowStart = totalAttackTime - 2f / 3f;
+        float critWindowEnd = critWindowStart + 1f / 3f;
         float currTime = 0f;
         bool chanceUsed = false;
         Vector3 startingPosition = timeIndic.GetComponent<RectTransform>().anchoredPosition;
@@ -292,6 +298,7 @@ public class Player : Actor
             //The Player hits the input button
             if (!chanceUsed && attemptAction)
             {
+                animator.SetTrigger("Block");
                 if (currTime > critWindowStart && currTime < critWindowEnd)
                 {
                     Debug.Log("Defended!");
@@ -310,5 +317,11 @@ public class Player : Actor
     public override void Die()
     {
         gameObject.SetActive(false);    
+    }
+
+    // Called by attack animation
+    public void GiveDamage()
+    {
+        selectedEnemy.TakeDamage(10 + Strength - selectedEnemy.Armor, attemptedType);
     }
 }

@@ -22,7 +22,9 @@ public class BattleManager : MonoBehaviour
     /// <summary> Spawnpoints of combatants. Player's is the first in the array </summary>
     public Transform[] spawnpoints;
 
-    public void SpawnOpponents(GameObject[] opponents)
+    private GameObject overworldEnemy;
+
+    public void SpawnOpponents(GameObject[] opponents, GameObject overworldObject)
     {
         switch(opponents.Length)
         {
@@ -43,6 +45,8 @@ public class BattleManager : MonoBehaviour
                 break;
         }
         player.GetEnemies();
+
+        overworldEnemy = overworldObject;
     }
 
     // Start is called before the first frame update
@@ -134,6 +138,14 @@ public class BattleManager : MonoBehaviour
         player.battleActions.Disable();
         playerActionsUI.SetActive(false);
         currentTurn = Turn.None;
+        overworldEnemy.SetActive(false);
+        GameObject.FindObjectOfType<OverworldMovement>().controls.Overworld.Enable();
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = true;
+        SceneManager.UnloadSceneAsync("Battle");
+    }
+
+    public void Flee()
+    {
         GameObject.FindObjectOfType<OverworldMovement>().controls.Overworld.Enable();
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = true;
         SceneManager.UnloadSceneAsync("Battle");
