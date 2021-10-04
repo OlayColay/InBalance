@@ -20,7 +20,11 @@ public class HouseGlobals : MonoBehaviour
 
     public static bool canSleep;
 
-    // Start is called before the first frame update
+    public Sprite plant2;
+    public Sprite plant3;
+    public Sprite yarn2;
+    public Sprite yarn3;
+
     private void Awake()
     {
         plantLevel = 0;
@@ -33,13 +37,15 @@ public class HouseGlobals : MonoBehaviour
         canSleep = false;
     }
 
-    // Update is called once per frame
     private void Update()
     {
-        if (plantLevel >= 1 && bookLevel >= 1 && yarnLevel >= 1 &&
-            petLevel >= 1 && waterLevel >= 1 && cookLevel >= 1)
+        if (!canSleep)
         {
-            canSleep = true;
+            if (plantLevel >= 1 && bookLevel >= 1 && yarnLevel >= 1 &&
+            petLevel >= 1 && waterLevel >= 1 && cookLevel >= 1)
+            {
+                canSleep = true;
+            }
         }
         gateRand = Random.Range(0, 4);
     }

@@ -10,12 +10,16 @@ public class OverworldInteraction : MonoBehaviour
     private Controls controls;
     private bool interactEnabled;
     private const string defaultReminderText = "Press Space to Interact with ";
+
     [SerializeField] private int rowNum;
+    private HouseGlobals globals;
 
     private void Awake()
     {
         interactReminder.text = defaultReminderText;
         controls = new Controls();
+        GameObject globalsObject = GameObject.Find("Level");
+        globals = globalsObject.GetComponent<HouseGlobals>();
 
         controls.Overworld.Interact.performed += pressed =>
         {
@@ -79,10 +83,14 @@ public class OverworldInteraction : MonoBehaviour
                 HouseGlobals.plantLevel += 1;
                 if (HouseGlobals.plantLevel == 1)
                 {
+                    SpriteRenderer sr = GetComponent<SpriteRenderer>();
+                    sr.sprite = globals.plant2;
                     offset = 0;
                 }
                 else if (HouseGlobals.plantLevel == 2)
                 {
+                    SpriteRenderer sr = GetComponent<SpriteRenderer>();
+                    sr.sprite = globals.plant3;
                     offset = 2;
                 }
                 else
@@ -103,7 +111,22 @@ public class OverworldInteraction : MonoBehaviour
                 break;
             case "Yarn":
                 HouseGlobals.yarnLevel += 1;
-                offset = Mathf.Min(HouseGlobals.yarnLevel, HouseGlobals.yarnMax) - 1;
+                if (HouseGlobals.yarnLevel == 1)
+                {
+                    SpriteRenderer sr = GetComponent<SpriteRenderer>();
+                    sr.sprite = globals.yarn2;
+                    offset = 0;
+                }
+                else if (HouseGlobals.yarnLevel == 2)
+                {
+                    SpriteRenderer sr = GetComponent<SpriteRenderer>();
+                    sr.sprite = globals.yarn3;
+                    offset = 1;
+                }
+                else
+                {
+                    offset = 2;
+                }
                 break;
             case "Pet Rock":
                 HouseGlobals.petLevel += 1;

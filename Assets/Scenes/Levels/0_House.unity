@@ -1261,6 +1261,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 143f85d48dc5fd9478d7c29d1cb8b92c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plant2: {fileID: 21300000, guid: 0e1525ff279514e489948c2de45c4469, type: 3}
+  plant3: {fileID: 21300000, guid: c68f7356004e7cf4290d00588e1b1bae, type: 3}
+  yarn2: {fileID: 21300000, guid: 910515b411f0d5140a80eb302b439f38, type: 3}
+  yarn3: {fileID: 21300000, guid: 8231ad63a8a672a499d307604ca59c75, type: 3}
 --- !u!1 &953743900
 GameObject:
   m_ObjectHideFlags: 0
@@ -7502,7 +7506,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.7}
+  m_Offset: {x: 0, y: 0.0024085045}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -7513,7 +7517,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.5}
+  m_Size: {x: 1.5, y: 1.3150959}
   m_EdgeRadius: 0
 --- !u!212 &6615745122724405176
 SpriteRenderer:
