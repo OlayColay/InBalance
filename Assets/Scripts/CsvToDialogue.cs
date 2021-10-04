@@ -13,7 +13,7 @@ using System.IO;
  */
 public class CsvToDialogue
 {
-    static string csvFile = "Assets/Ludum Dare Team 5 Dialogue.csv";
+    static string csvFile = "Assets/Resources/Ludum Dare Team 5 Dialogue.csv";
     static FileInfo theSourceFile = null;
     static StreamReader reader = null;
 
