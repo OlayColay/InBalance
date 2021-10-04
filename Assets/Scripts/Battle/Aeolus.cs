@@ -26,7 +26,7 @@ public class Aeolus : Actor
     {
         spriteRenderer.sprite = attack;
         GameObject slash = Instantiate(airCut, transform.position - new Vector3(1, 0, 0), Quaternion.identity);
-        slash.transform.DOMove(enemies[0].transform.position, 1f).OnComplete(() => {ReturnToNormal(); Destroy(slash);});
+        slash.transform.DOMove(enemies[0].transform.position, 1f).SetEase(Ease.Linear).OnComplete(() => {ReturnToNormal(); Destroy(slash);});
     }
 
     public override bool TakeDamage(float damageAmount, Constants.Type damageType)
