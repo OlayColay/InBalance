@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 /*
  * Manager for the Quest Log
@@ -17,9 +18,12 @@ public class QuestLog : MonoBehaviour
     public List<Text> questTexts;
     public List<Image> checkboxes;
     public Image Background;
+    public Image blackScreen;
 
     public GameObject checkBox;
     public GameObject questText;
+
+    public RunMultipleDialogue dialogueBox;
 
     public int startYPos = -40;
     public int startXPosText = 0;
@@ -38,6 +42,17 @@ public class QuestLog : MonoBehaviour
             Debug.Log("here");
         }
         setQuestBox();
+    }
+
+    private void Start()
+    {
+        blackScreen.gameObject.SetActive(true);
+        blackScreen.DOFade(0f, 1f).SetEase(Ease.Linear).OnComplete(() => {
+            dialogueBox.loadDialogue(5, 1);
+            dialogueBox.gameObject.SetActive(true);
+            dialogueBox.startDialogue();
+            blackScreen.gameObject.SetActive(false);
+        });
     }
 
     public void addQuest(string quest)
