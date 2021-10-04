@@ -113,7 +113,7 @@ public class Actor : MonoBehaviour
     }
 
     /// <summary> Actor has HP reduced depending on element of the attack </summary>
-    public virtual void TakeDamage(float damageAmount, Type damageType)
+    public virtual bool TakeDamage(float damageAmount, Type damageType)
     {
         int oldHP = this.HP;
         if (isStrongAgainst(damageType))
@@ -128,6 +128,8 @@ public class Actor : MonoBehaviour
         else if (this.HP < oldHP)
             spriteRenderer.color = Color.red;
         Invoke("ResetColor", 0.5f);
+
+        return this.HP < 1;
     }
 
     private void ResetColor()
@@ -205,8 +207,7 @@ public class Actor : MonoBehaviour
 
     private void SetDead()
     {
-        this.enabled = false;
-        gameObject.SetActive(false);
+        Destroy(this.gameObject);
 
         foreach (Actor enemy in enemies)
         {

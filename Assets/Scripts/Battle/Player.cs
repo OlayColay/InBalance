@@ -153,7 +153,8 @@ public class Player : Actor
         Debug.Log("Player rests!");
         playerActionsUI.SetActive(false);
         HP += MaxHP / 3;
-        battleManager.NextTurn();
+        battleManager.Invoke("NextTurn", 0.5f);
+        animator.SetTrigger("Rest");
     }
 
     public void Attack(Type type = Type.Physical)
@@ -162,7 +163,7 @@ public class Player : Actor
         attemptAction = true;
     }
 
-    public override void TakeDamage(float damageAmount, Type damageType)
+    public override bool TakeDamage(float damageAmount, Type damageType)
     {
         if (invulnerable)
         {
@@ -174,6 +175,8 @@ public class Player : Actor
             spriteRenderer.color = Color.white;
             invulnerable = false;
         }
+
+        return this.HP < 1;
     }
 
     //Coroutine for checking if player hits the critical strike on an attack
@@ -183,7 +186,7 @@ public class Player : Actor
     //the timeIndic is a temporary UI time indicator for visualizations before animations are finished
     IEnumerator AttackTimingCoroutine()
     {
-        float totalAttackTime = 3f;
+        float totalAttackTime = 2f;
         float critWindowStart = 0.5f;
         float critWindowEnd = 0.92f;
         float currTime = 0f;
@@ -224,11 +227,20 @@ public class Player : Actor
                     //The Player missed the window
                     Debug.Log("Missed!");
                     if (attackCount < 2) // The last attack can't do damage if you miss
-                        selectedEnemy.TakeDamage(0.5f * (10 + Strength - selectedEnemy.Armor), attemptedType);
+                        if (selectedEnemy.TakeDamage(0.5f * (10 + Strength - selectedEnemy.Armor), attemptedType))
+                            battleActions.Disable();
                     attackCount = 10;
+                }
+
+                if (selectedEnemy.HP < 1 && 2 < attackCount)
+                {
+                    battleActions.Disable();
                 }
                 chanceUsed = true;
             }
+
+            if (enemies.Length < 1)
+                attackCount = 10;
         }
         // Debug.Log("finish");
 
@@ -254,7 +266,7 @@ public class Player : Actor
         if (currentEnemies.Length == 0)
         {
             // Victory!
-            battleManager.Victory();
+            battleManager.StartCoroutine(battleManager.Victory());
         }
         if (enemies.Length != currentEnemies.Length)
         {
@@ -322,6 +334,7 @@ public class Player : Actor
     // Called by attack animation
     public void GiveDamage()
     {
-        selectedEnemy.TakeDamage(10 + Strength - selectedEnemy.Armor, attemptedType);
+        if (selectedEnemy.TakeDamage(10 + Strength - selectedEnemy.Armor, attemptedType) && 2 < attackCount)
+            battleActions.Disable();
     }
 }

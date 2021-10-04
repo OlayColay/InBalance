@@ -115,7 +115,7 @@ public class BattleManager : MonoBehaviour
     private void PlayerToEnemyTurn()
     {
         player.battleActions.Disable();
-        NextTurn();
+        Invoke("NextTurn", 0.5f);
     }
 
     /// <summary> An enemy's turn </summary>
@@ -129,25 +129,34 @@ public class BattleManager : MonoBehaviour
     private void EnemyToPlayerTurn()
     {
         player.defendActions.Disable();
-        NextTurn();
+        Invoke("NextTurn", 0.5f);
     }
 
     /// <summary> TODO: End the battle, do whatever victory animations happen, and return to overworld </summary>
-    public void Victory()
+    public IEnumerator Victory()
     {
+        while (currentTurn != Turn.PlayerToEnemies)
+        {
+            yield return 0;
+        }
         player.battleActions.Disable();
         playerActionsUI.SetActive(false);
         currentTurn = Turn.None;
         overworldEnemy.SetActive(false);
-        GameObject.FindObjectOfType<OverworldMovement>().controls.Overworld.Enable();
-        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = true;
-        SceneManager.UnloadSceneAsync("Battle");
+        
+        Flee();
     }
 
     public void Flee()
     {
         GameObject.FindObjectOfType<OverworldMovement>().controls.Overworld.Enable();
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = true;
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioListener>().enabled = true;
         SceneManager.UnloadSceneAsync("Battle");
+
+        foreach(Actor enemy in player.enemies)
+        {
+            Destroy(enemy.gameObject);
+        }
     }
 }

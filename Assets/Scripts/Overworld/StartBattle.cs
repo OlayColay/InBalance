@@ -8,20 +8,35 @@ public class StartBattle : MonoBehaviour
     /// <summary> The opponents that the player will fight in the battle </summary>
     public GameObject[] opponents;
 
+    private Collider2D player;
+
+    private bool battledOnce = false;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Start Battle");
         if (other.tag == "Player")
         {
             GameObject.FindObjectOfType<OverworldMovement>().controls.Overworld.Disable();
             SceneManager.LoadScene(0, LoadSceneMode.Additive);
-            SceneManager.sceneLoaded += BattleLoaded;
+
+            if (!battledOnce)
+            {
+                SceneManager.sceneLoaded += BattleLoaded;
+                player = other;
+                battledOnce = true;
+            }
         }
     }
 
     // This goes before any Start function in the scene!
     private void BattleLoaded(Scene scene, LoadSceneMode mode)
     {
-        GameObject.FindObjectOfType<BattleManager>().SpawnOpponents(opponents, this.gameObject);
-        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = false;
+        if (GetComponent<Collider2D>().IsTouching(player))
+        {
+            GameObject.FindObjectOfType<BattleManager>().SpawnOpponents(opponents, this.gameObject);
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = false;
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioListener>().enabled = false;
+        }
     }
 }
