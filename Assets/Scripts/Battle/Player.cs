@@ -183,7 +183,7 @@ public class Player : Actor
     //the timeIndic is a temporary UI time indicator for visualizations before animations are finished
     IEnumerator AttackTimingCoroutine()
     {
-        float totalAttackTime = 3f;
+        float totalAttackTime = 2f;
         float critWindowStart = 0.5f;
         float critWindowEnd = 0.92f;
         float currTime = 0f;
@@ -229,6 +229,9 @@ public class Player : Actor
                 }
                 chanceUsed = true;
             }
+
+            if (enemies.Length < 1)
+                attackCount = 10;
         }
         // Debug.Log("finish");
 
@@ -254,7 +257,7 @@ public class Player : Actor
         if (currentEnemies.Length == 0)
         {
             // Victory!
-            battleManager.Victory();
+            battleManager.StartCoroutine(battleManager.Victory());
         }
         if (enemies.Length != currentEnemies.Length)
         {
