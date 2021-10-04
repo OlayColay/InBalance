@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class OverworldMovement : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private float moveSpeed = 8f;
     private Rigidbody2D rb;
     private Animator anim;
     public Controls controls;

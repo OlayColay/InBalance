@@ -1,0 +1,792 @@
+fileFormatVersion: 2
+guid: 8eb0574534785704c9f6e8d52cab6f32
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4165049809739556697
+    second: neko sprite sheet 2_0
+  - first:
+      213: 4526677502778906762
+    second: neko sprite sheet 2_1
+  - first:
+      213: -6092853948855533269
+    second: neko sprite sheet 2_2
+  - first:
+      213: -6979483339043881673
+    second: neko sprite sheet 2_3
+  - first:
+      213: -5600487805265223834
+    second: neko sprite sheet 2_4
+  - first:
+      213: 3890220558982292218
+    second: neko sprite sheet 2_5
+  - first:
+      213: 1821065162569249165
+    second: neko sprite sheet 2_6
+  - first:
+      213: -3197146127077147353
+    second: neko sprite sheet 2_7
+  - first:
+      213: -1673071814086549390
+    second: neko sprite sheet 2_8
+  - first:
+      213: -8213161359738891033
+    second: neko sprite sheet 2_9
+  - first:
+      213: -8519800948852042258
+    second: neko sprite sheet 2_10
+  - first:
+      213: 475511388856095100
+    second: neko sprite sheet 2_11
+  - first:
+      213: 5637368675404135891
+    second: neko sprite sheet 2_12
+  - first:
+      213: 5733082493902591277
+    second: neko sprite sheet 2_13
+  - first:
+      213: -5812591440249816032
+    second: neko sprite sheet 2_14
+  - first:
+      213: -5136383611131599251
+    second: neko sprite sheet 2_15
+  - first:
+      213: 1702745454188521773
+    second: neko sprite sheet 2_16
+  - first:
+      213: -8840070343694120440
+    second: neko sprite sheet 2_17
+  - first:
+      213: -3026899687008344133
+    second: neko sprite sheet 2_18
+  - first:
+      213: -7993516011612497431
+    second: neko sprite sheet 2_19
+  - first:
+      213: 1729778258289380186
+    second: neko sprite sheet 2_20
+  - first:
+      213: -1911561313432832127
+    second: neko sprite sheet 2_21
+  - first:
+      213: 8170077592873395005
+    second: neko sprite sheet 2_22
+  - first:
+      213: 5406996921735002882
+    second: neko sprite sheet 2_23
+  - first:
+      213: -6553576146533950251
+    second: neko sprite sheet 2_24
+  - first:
+      213: -2583733105015261127
+    second: neko sprite sheet 2_25
+  - first:
+      213: -3655948419266318981
+    second: neko sprite sheet 2_26
+  - first:
+      213: -6206036309062378244
+    second: neko sprite sheet 2_27
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: neko sprite sheet 2_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 433
+        width: 63
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 957a55d0cba3dc930800000000000000
+      internalID: 4165049809739556697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_1
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 432
+        width: 49
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8893e5943df1de30800000000000000
+      internalID: 4526677502778906762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_2
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 431
+        width: 50
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2141266d95d17ba0800000000000000
+      internalID: -6092853948855533269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_3
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 431
+        width: 52
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73d388cc1e4e32f90800000000000000
+      internalID: -6979483339043881673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_4
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 430
+        width: 49
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66f524683021742b0800000000000000
+      internalID: -5600487805265223834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_5
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 428
+        width: 54
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af2af04bcf6dcf530800000000000000
+      internalID: 3890220558982292218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_6
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 428
+        width: 53
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8177cfed19b54910800000000000000
+      internalID: 1821065162569249165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_7
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 347
+        width: 63
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72dfc80698471a3d0800000000000000
+      internalID: -3197146127077147353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_8
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 346
+        width: 63
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27027a5ac0e08c8e0800000000000000
+      internalID: -1673071814086549390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_9
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 346
+        width: 63
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e49ccd224df40e80800000000000000
+      internalID: -8213161359738891033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_10
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 345
+        width: 63
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee553a64d2693c980800000000000000
+      internalID: -8519800948852042258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_11
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 343
+        width: 63
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c719b6bb61b599600800000000000000
+      internalID: 475511388856095100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_12
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 268
+        width: 53
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ddb06531f4fb3e40800000000000000
+      internalID: 5637368675404135891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_13
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 267
+        width: 53
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d25131d2720009f40800000000000000
+      internalID: 5733082493902591277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_14
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 268
+        width: 53
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02cfe6ba1e6855fa0800000000000000
+      internalID: -5812591440249816032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_15
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 273
+        width: 44
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d66ec54c156e7b8b0800000000000000
+      internalID: -5136383611131599251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_16
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 270
+        width: 63
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2961d318fd51a710800000000000000
+      internalID: 1702745454188521773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_17
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 270
+        width: 63
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80a85aeebd2c15580800000000000000
+      internalID: -8840070343694120440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_18
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 176
+        width: 53
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb7602995ca4ef5d0800000000000000
+      internalID: -3026899687008344133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_19
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 176
+        width: 52
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e99075f983511190800000000000000
+      internalID: -7993516011612497431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_20
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 176
+        width: 63
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5b48814928610810800000000000000
+      internalID: 1729778258289380186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_21
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 176
+        width: 63
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 187f4720d15c875e0800000000000000
+      internalID: -1911561313432832127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_22
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 98
+        width: 63
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d33e896a842f16170800000000000000
+      internalID: 8170077592873395005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_23
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 98
+        width: 63
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20b35a58d03890b40800000000000000
+      internalID: 5406996921735002882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_24
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 98
+        width: 63
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dcde5197350d05a0800000000000000
+      internalID: -6553576146533950251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_25
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 98
+        width: 63
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 938f5212e6cb42cd0800000000000000
+      internalID: -2583733105015261127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_26
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 98
+        width: 63
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7dea706846734dc0800000000000000
+      internalID: -3655948419266318981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neko sprite sheet 2_27
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 98
+        width: 63
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfc192f9bdabfd9a0800000000000000
+      internalID: -6206036309062378244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -21,9 +21,9 @@ public class QuestLog : MonoBehaviour
     public GameObject checkBox;
     public GameObject questText;
 
-    public int startYPos = 290;
-    public int startXPosText = -490;
-    public int startXPosCheck = -630;
+    public int startYPos = -40;
+    public int startXPosText = 0;
+    public int startXPosCheck = 0;
     public int spacing = 35;
     public int backgroundXSize = 300;
 
@@ -82,13 +82,13 @@ public class QuestLog : MonoBehaviour
             questTexts[x].gameObject.GetComponent<RectTransform>().sizeDelta = new Vector3(220, 30, 1);
             questTexts[x].gameObject.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
             questTexts[x].gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(startXPosText, startYPos - spacing*x, 1);
-            checkboxes.Add(Instantiate(checkBox).GetComponent<Image>());
+            /*checkboxes.Add(Instantiate(checkBox).GetComponent<Image>());
             checkboxes[x].gameObject.GetComponent<Transform>().SetParent(this.gameObject.GetComponent<Transform>());
             checkboxes[x].gameObject.GetComponent<RectTransform>().sizeDelta = new Vector3(20, 20, 1);
             checkboxes[x].gameObject.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-            checkboxes[x].gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(startXPosCheck, startYPos - spacing * x, 1);
+            checkboxes[x].gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(startXPosCheck, startYPos - spacing * x, 1);*/
         }
-        Background.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector3(300, spacing+ 15 +spacing*currQuests.Count);
+        Background.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector3(250, spacing+ 15 +spacing*currQuests.Count);
         globals.currQuests = currQuests;
     }
 }

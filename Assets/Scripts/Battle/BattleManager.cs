@@ -117,13 +117,14 @@ public class BattleManager : MonoBehaviour
     /// <summary> An enemy's turn </summary>
     private void EnemyTurn(int enemyNum)
     {
+        player.defendActions.Enable();
         player.enemies[enemyNum].Attack();
-        Invoke("NextTurn", 1);
     }
 
     /// <summary> Turn after player and before enemy. Some dialouge could happen here </summary>
     private void EnemyToPlayerTurn()
     {
+        player.defendActions.Disable();
         NextTurn();
     }
 

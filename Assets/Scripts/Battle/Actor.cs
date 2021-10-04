@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 using static Constants;
 
 public class Actor : MonoBehaviour
 {
     protected BattleManager battleManager;
+    public SpriteRenderer spriteRenderer;
 
     [SerializeField] protected int health = 100;
     /// <summary> Health points of the actor </summary>
@@ -102,6 +104,8 @@ public class Actor : MonoBehaviour
     /// <summary> If the actor is currently attacking </summary>
     public bool isAttacking = false;
 
+    public Vector3 startPosition;
+
     private void Start()
     {
         battleManager = GameObject.FindObjectOfType<BattleManager>();
@@ -109,14 +113,26 @@ public class Actor : MonoBehaviour
     }
 
     /// <summary> Actor has HP reduced depending on element of the attack </summary>
-    public void TakeDamage(float damageAmount, Type damageType)
+    public virtual void TakeDamage(float damageAmount, Type damageType)
     {
+        int oldHP = this.HP;
         if (isStrongAgainst(damageType))
             this.HP -= (int)(damageAmount * resistantMultiplier);
         else if (isWeakAgainst(damageType))
             this.HP -= (int)(damageAmount * weakMultiplier);
         else
             this.HP -= (int)damageAmount;
+
+        if (oldHP < this.HP)
+            spriteRenderer.color = Color.green;
+        else if (this.HP < oldHP)
+            spriteRenderer.color = Color.red;
+        Invoke("ResetColor", 0.5f);
+    }
+
+    private void ResetColor()
+    {
+        spriteRenderer.color = Color.white;
     }
 
     /// <summary> Return true if the actor is resistant to the opposingType </summary>
@@ -162,9 +178,13 @@ public class Actor : MonoBehaviour
     /// <summary> Enemies pick a random ability of theirs to attack with </summary>
     public virtual void Attack()
     {
+        startPosition = transform.position;
+        transform.DOMove(enemies[0].transform.GetChild(0).position, 0.5f);
         int rand = Random.Range(0, abilities.Length);
         abilities[rand].Use(this, enemies[0]);
+        enemies[0].StartCoroutine(enemies[0].GetComponent<Player>().BlockTimingCoroutine(abilities[rand].power + Strength - enemies[0].Armor, type, this));
         Debug.Log(abilities[rand].displayName + " used against " + enemies[0].name + "!");
+        // transform.DOMove(startPosition, 0.5f);
     }
     
     /// <summary> Enemies will just get the player as their enemy </summary>
@@ -178,11 +198,19 @@ public class Actor : MonoBehaviour
     /// <summary> This is called when the Actor's HP is 0 </summary>
     public virtual void Die()
     {
-        gameObject.SetActive(false);
+        transform.DOMoveY(transform.position.y - 1, 0.5f);
+        spriteRenderer.DOFade(0f, 0.5f);
+        this.enabled = false;
+        Invoke("SetDead", 0.5f);
 
         foreach (Actor enemy in enemies)
         {
             enemy.GetEnemies();
         }
+    }
+
+    private void SetDead()
+    {
+        gameObject.SetActive(false);
     }
 }

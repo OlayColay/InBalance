@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -11,20 +12,22 @@ public class Player : Actor
 {
     private Health healthScript;
     public Controls.BattleActions battleActions;
-    [SerializeField] private GameObject playerActions;
+    public Controls.DefendActions defendActions;
+    [SerializeField] private GameObject playerActionsUI;
 
     public Transform playerBase;
 
     /// <summary> The type that the button a player pushes is for </summary>
     private Type attemptedType = Type.Physical;
-    private bool attemptAttack = false;
+    private bool attemptAction = false;
     
     public Actor selectedEnemy;
     private int selectedEnemyNum = 0;
     private int attackCount = 0;
 
-    public bool inAttack = false;
     public GameObject timeIndic;
+
+    public bool invulnerable = false;
 
     /// <summary> The enemy that the player will attack </summary>
     public int SelectedEnemyNum {
@@ -54,8 +57,9 @@ public class Player : Actor
                     break;
                 default:
                     Debug.LogError("SelectedEnemyNum is being set to in invalid number: " + value);
-                    break;
+                    return;
             }
+            if (battleActions.enabled) transform.DOMove(selectedEnemy.transform.GetChild(0).position, 0.5f);
         }
     }
 
@@ -91,6 +95,7 @@ public class Player : Actor
     public override int HP {
         set
         {
+            value = Mathf.Min(value, MaxHP);
             healthScript.Value = value;
             base.HP = value;
         }
@@ -107,8 +112,9 @@ public class Player : Actor
     private void Awake()
     {
         healthScript = GetComponent<Health>();
-        
+
         battleActions = new Controls().Battle;
+        defendActions = new Controls().Defend;
 
         battleActions.Physical.performed += ctx => Attack(Type.Physical);
         battleActions.Air.performed += ctx => Attack(Type.Air);
@@ -119,6 +125,8 @@ public class Player : Actor
 
         battleActions.DirectionalInput.performed += ctx => SelectedEnemyNum = ctx.ReadValue<float>() < 0 ? 2 : 0;
         battleActions.DirectionalInput.canceled += ctx => SelectedEnemyNum = 1;
+
+        defendActions.Block.performed += ctx => attemptAction = true;
 
         timeIndic = GameObject.Find("TimingIndicator");
 
@@ -134,15 +142,33 @@ public class Player : Actor
     {
         Debug.Log("Player attacks!");
         battleActions.Enable();
-        playerActions.SetActive(false);
+        playerActionsUI.SetActive(false);
         transform.DOMove(selectedEnemy.transform.GetChild(0).position, 0.5f);
         StartCoroutine(AttackTimingCoroutine());
+    }
+
+    public void RestSelected()
+    {
+        Debug.Log("Player rests!");
+        playerActionsUI.SetActive(false);
+        HP += MaxHP / 3;
+        battleManager.NextTurn();
     }
 
     public void Attack(Type type = Type.Physical)
     {
         attemptedType = type;
-        attemptAttack = true;
+        attemptAction = true;
+    }
+
+    public override void TakeDamage(float damageAmount, Type damageType)
+    {
+        if (invulnerable)
+        {
+            damageAmount /= 2;
+            invulnerable = false;
+        }
+        base.TakeDamage(damageAmount, damageType);
     }
 
     //Coroutine for checking if player hits the critical strike on an attack
@@ -152,7 +178,6 @@ public class Player : Actor
     //the timeIndic is a temporary UI time indicator for visualizations before animations are finished
     IEnumerator AttackTimingCoroutine()
     {
-        inAttack = true;
         float totalAttackTime = 3f;
         float critWindowStart = 1f;
         float critWindowEnd = 2f;
@@ -160,6 +185,9 @@ public class Player : Actor
         bool attackHit = false;
         bool chanceUsed = false;
         Vector3 startingPosition = timeIndic.GetComponent<RectTransform>().anchoredPosition;
+
+        attemptAction = false;
+
         while (currTime < totalAttackTime)
         {
             yield return 0;
@@ -175,12 +203,11 @@ public class Player : Actor
             }
 
             //The Player hits the input button
-            if (!chanceUsed && attemptAttack)
+            if (!chanceUsed && attemptAction)
             {
                 if (currTime > critWindowStart && currTime < critWindowEnd)
                 {
                     Debug.Log(attemptedType.ToString() + " attack performed against " + selectedEnemy.name + "!");
-                    transform.DOMove(selectedEnemy.transform.GetChild(0).position, 0.5f);
                     this.type = attemptedType;
                     selectedEnemy.TakeDamage(10 + Strength - selectedEnemy.Armor, attemptedType);
                     attackHit = true;
@@ -190,20 +217,21 @@ public class Player : Actor
                 {
                     //The Player missed the window
                     Debug.Log("Missed!");
+                    if (attackCount < 2) // The last attack can't do damage if you miss
+                        selectedEnemy.TakeDamage(0.5f * (10 + Strength - selectedEnemy.Armor), attemptedType);
                     attackCount = 10;
                 }
                 chanceUsed = true;
-                attemptAttack = false;
             }
         }
         // Debug.Log("finish");
 
-        inAttack = false;
         timeIndic.GetComponent<RectTransform>().anchoredPosition = startingPosition;
         if (!attackHit || 2 < attackCount)
         {
+            battleActions.Disable();
             transform.DOMove(playerBase.position, 0.5f);
-            battleManager.NextTurn();
+            battleManager.Invoke("NextTurn", 1f);
             attackCount = 0;
         }
         else
@@ -215,7 +243,7 @@ public class Player : Actor
     /// <summary> The player finds every active enemy on screen </summary>
     public override void GetEnemies()
     {
-        GameObject[] currentEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] currentEnemies = GameObject.FindGameObjectsWithTag("Enemy").Where(e => e.GetComponent<Actor>().enabled).ToArray();
 
         if (currentEnemies.Length == 0)
         {
@@ -234,5 +262,53 @@ public class Player : Actor
 
         // So that the currently selected enemy refreshes
         SelectedEnemyNum = SelectedEnemyNum;
+    }
+
+    public IEnumerator BlockTimingCoroutine(int damage, Type attackType, Actor owner)
+    {
+        float totalAttackTime = 3f;
+        float critWindowStart = 1f;
+        float critWindowEnd = 2f;
+        float currTime = 0f;
+        bool chanceUsed = false;
+        Vector3 startingPosition = timeIndic.GetComponent<RectTransform>().anchoredPosition;
+        
+        attemptAction = false;
+
+        while (currTime < totalAttackTime)
+        {
+            yield return 0;
+            currTime += Time.deltaTime;
+            timeIndic.GetComponent<RectTransform>().anchoredPosition = startingPosition + new Vector3((600 * currTime) / totalAttackTime, 0, 0);
+            if (currTime > critWindowStart && currTime < critWindowEnd)
+            {
+                timeIndic.GetComponent<Image>().color = Color.white;
+            }
+            else
+            {
+                timeIndic.GetComponent<Image>().color = Color.black;
+            }
+
+            //The Player hits the input button
+            if (!chanceUsed && attemptAction)
+            {
+                if (currTime > critWindowStart && currTime < critWindowEnd)
+                {
+                    Debug.Log("Defended!");
+                    invulnerable = true;
+                }
+                chanceUsed = true;
+            }
+        }
+        // Debug.Log("finish");
+        TakeDamage(damage, attackType);
+        timeIndic.GetComponent<RectTransform>().anchoredPosition = startingPosition;
+        owner.transform.DOMove(owner.startPosition, 0.5f);
+        battleManager.Invoke("NextTurn", 1f);
+    }
+
+    public override void Die()
+    {
+        gameObject.SetActive(false);    
     }
 }
