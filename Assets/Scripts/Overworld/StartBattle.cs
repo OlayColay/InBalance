@@ -20,6 +20,7 @@ public class StartBattle : MonoBehaviour
         if (other.tag == "Player")
         {
             music.Pause();
+
             GameObject.FindObjectOfType<OverworldMovement>().controls.Overworld.Disable();
             SceneManager.LoadScene("Battle", LoadSceneMode.Additive);
 
