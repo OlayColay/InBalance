@@ -162,7 +162,7 @@ public class Player : Actor
         attemptAction = true;
     }
 
-    public override void TakeDamage(float damageAmount, Type damageType)
+    public override bool TakeDamage(float damageAmount, Type damageType)
     {
         if (invulnerable)
         {
@@ -174,6 +174,8 @@ public class Player : Actor
             spriteRenderer.color = Color.white;
             invulnerable = false;
         }
+
+        return this.HP < 1;
     }
 
     //Coroutine for checking if player hits the critical strike on an attack
@@ -224,8 +226,14 @@ public class Player : Actor
                     //The Player missed the window
                     Debug.Log("Missed!");
                     if (attackCount < 2) // The last attack can't do damage if you miss
-                        selectedEnemy.TakeDamage(0.5f * (10 + Strength - selectedEnemy.Armor), attemptedType);
+                        if (selectedEnemy.TakeDamage(0.5f * (10 + Strength - selectedEnemy.Armor), attemptedType))
+                            battleActions.Disable();
                     attackCount = 10;
+                }
+
+                if (selectedEnemy.HP < 1 && 2 < attackCount)
+                {
+                    battleActions.Disable();
                 }
                 chanceUsed = true;
             }
@@ -325,6 +333,7 @@ public class Player : Actor
     // Called by attack animation
     public void GiveDamage()
     {
-        selectedEnemy.TakeDamage(10 + Strength - selectedEnemy.Armor, attemptedType);
+        if (selectedEnemy.TakeDamage(10 + Strength - selectedEnemy.Armor, attemptedType) && 2 < attackCount)
+            battleActions.Disable();
     }
 }
