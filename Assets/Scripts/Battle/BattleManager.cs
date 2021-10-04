@@ -165,6 +165,14 @@ public class BattleManager : MonoBehaviour
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioListener>().enabled = true;
         SceneManager.UnloadSceneAsync("Battle");
 
+        foreach (AudioSource audioSource in GameObject.FindObjectsOfType<AudioSource>())
+        {
+            if (!audioSource.isPlaying && audioSource.playOnAwake)
+            {
+                audioSource.Play();
+            }
+        }
+
         foreach(Actor enemy in player.enemies)
         {
             Destroy(enemy.gameObject);
