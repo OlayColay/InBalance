@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CluckMovement : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 8f;
+    [SerializeField] private GameObject player;
     private Rigidbody2D rb;
     private Animator anim;
     private Controls playerControls;
@@ -26,7 +26,9 @@ public class CluckMovement : MonoBehaviour
     {
         if (moveDir != Vector2.zero)
         {
-            // rb.MovePosition(rb.position + moveDir * moveSpeed * Time.fixedDeltaTime);
+            Vector2 offset = -moveDir;
+            Vector2 playerPos = new Vector2(player.transform.position.x, player.transform.position.y);
+            rb.MovePosition(playerPos + offset * 1f);
             anim.SetBool("IsWalking", true);
             anim.SetFloat("MoveX", moveDir.x);
             anim.SetFloat("MoveY", moveDir.y);
