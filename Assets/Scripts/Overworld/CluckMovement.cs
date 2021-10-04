@@ -1,20 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class OverworldMovement : MonoBehaviour
+public class CluckMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 8f;
     private Rigidbody2D rb;
     private Animator anim;
-    public Controls controls;
+    private Controls playerControls;
     private Vector2 moveDir;
-
-    private void Awake()
-    {
-        controls = new Controls();
-    }
 
     private void Start()
     {
@@ -22,19 +16,9 @@ public class OverworldMovement : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    private void OnEnable()
-    {
-        controls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Disable();
-    }
-
     private void Update()
     {
-        moveDir = controls.Overworld.Move.ReadValue<Vector2>();
+        moveDir = GameObject.FindObjectOfType<OverworldMovement>().controls.Overworld.Move.ReadValue<Vector2>();
         // Debug.Log(moveDir);
     }
 
@@ -42,7 +26,7 @@ public class OverworldMovement : MonoBehaviour
     {
         if (moveDir != Vector2.zero)
         {
-            rb.MovePosition(rb.position + moveDir * moveSpeed * Time.fixedDeltaTime);
+            // rb.MovePosition(rb.position + moveDir * moveSpeed * Time.fixedDeltaTime);
             anim.SetBool("IsWalking", true);
             anim.SetFloat("MoveX", moveDir.x);
             anim.SetFloat("MoveY", moveDir.y);
