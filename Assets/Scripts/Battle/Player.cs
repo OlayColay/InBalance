@@ -307,7 +307,8 @@ public class Player : Actor
 
     public override void Die()
     {
-        gameObject.SetActive(false);    
+        base.Die();
+        battleManager.GameOver();
     }
 
     // Called by attack animation

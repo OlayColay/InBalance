@@ -243,7 +243,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 48796680}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.5, y: -4.69, z: 0}
+  m_LocalPosition: {x: -8.45, y: -6.4, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1389570769}
@@ -343,11 +343,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9097060023402956986, guid: 03f5ce4e20bbcac4d82d4e8fff483225, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 9097060023402956986, guid: 03f5ce4e20bbcac4d82d4e8fff483225, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: -2.92
       objectReference: {fileID: 0}
     - target: {fileID: 9097060023402956986, guid: 03f5ce4e20bbcac4d82d4e8fff483225, type: 3}
       propertyPath: m_LocalPosition.z
@@ -701,6 +701,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Window
       objectReference: {fileID: 0}
+    - target: {fileID: 3322340547825149133, guid: 6dd358167af3d7d43a48dfc2b2699867, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7004395401473590438, guid: 6dd358167af3d7d43a48dfc2b2699867, type: 3}
       propertyPath: m_Color.a
       value: 1
@@ -790,6 +794,10 @@ PrefabInstance:
     - target: {fileID: 3322340547825149133, guid: 6dd358167af3d7d43a48dfc2b2699867, type: 3}
       propertyPath: m_Name
       value: Window (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3322340547825149133, guid: 6dd358167af3d7d43a48dfc2b2699867, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7004395401473590438, guid: 6dd358167af3d7d43a48dfc2b2699867, type: 3}
       propertyPath: m_Color.a
@@ -1144,8 +1152,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0, y: -320}
-  m_SizeDelta: {x: 1800, y: 335}
+  m_AnchoredPosition: {x: -0, y: -2.5939}
+  m_SizeDelta: {x: 1800, y: 969.8121}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &773547583
 MonoBehaviour:
@@ -1167,7 +1175,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 04fbf9aaef5d9ac4ab0a9aa2ff9e2416, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1511,12 +1519,48 @@ PrefabInstance:
       value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 1867450162657978563, guid: bc623a829a2cc274ba79a90e2288513d, type: 3}
+      propertyPath: blackScreen
+      value: 
+      objectReference: {fileID: 1317036647}
+    - target: {fileID: 1867450162657978563, guid: bc623a829a2cc274ba79a90e2288513d, type: 3}
+      propertyPath: dialogueBox
+      value: 
+      objectReference: {fileID: 773547586}
+    - target: {fileID: 1867450162657978563, guid: bc623a829a2cc274ba79a90e2288513d, type: 3}
       propertyPath: startXPosText
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1867450162657978563, guid: bc623a829a2cc274ba79a90e2288513d, type: 3}
       propertyPath: startXPosCheck
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867450162657978563, guid: bc623a829a2cc274ba79a90e2288513d, type: 3}
+      propertyPath: currQuests.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867450162657978563, guid: bc623a829a2cc274ba79a90e2288513d, type: 3}
+      propertyPath: currQuests.Array.data[0]
+      value: Water Plants
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867450162657978563, guid: bc623a829a2cc274ba79a90e2288513d, type: 3}
+      propertyPath: currQuests.Array.data[1]
+      value: Read Book
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867450162657978563, guid: bc623a829a2cc274ba79a90e2288513d, type: 3}
+      propertyPath: currQuests.Array.data[2]
+      value: Play With Yarn
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867450162657978563, guid: bc623a829a2cc274ba79a90e2288513d, type: 3}
+      propertyPath: currQuests.Array.data[3]
+      value: Visit Rock
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867450162657978563, guid: bc623a829a2cc274ba79a90e2288513d, type: 3}
+      propertyPath: currQuests.Array.data[4]
+      value: Drink Water
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867450162657978563, guid: bc623a829a2cc274ba79a90e2288513d, type: 3}
+      propertyPath: currQuests.Array.data[5]
+      value: Make Food
       objectReference: {fileID: 0}
     - target: {fileID: 1867450162657978564, guid: bc623a829a2cc274ba79a90e2288513d, type: 3}
       propertyPath: m_Pivot.x
@@ -5785,6 +5829,81 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7552757006071910218, guid: 6dd358167af3d7d43a48dfc2b2699867, type: 3}
   m_PrefabInstance: {fileID: 389628758}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1317036645
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1317036646}
+  - component: {fileID: 1317036648}
+  - component: {fileID: 1317036647}
+  m_Layer: 0
+  m_Name: BlackScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1317036646
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317036645}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1540287570}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -6.4667, y: 0}
+  m_SizeDelta: {x: 2033.5232, y: 1160.5278}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1317036647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317036645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1317036648
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317036645}
+  m_CullTransparentMesh: 1
 --- !u!1 &1357548904
 GameObject:
   m_ObjectHideFlags: 0
@@ -6083,6 +6202,7 @@ RectTransform:
   - {fileID: 500254915}
   - {fileID: 773547582}
   - {fileID: 1012753397}
+  - {fileID: 1317036646}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6662,7 +6782,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -11.3114, y: 7.2192}
+  m_AnchoredPosition: {x: 0.00000095367, y: -275}
   m_SizeDelta: {x: 1677.3774, y: 305.5615}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1895079585
@@ -6733,6 +6853,10 @@ PrefabInstance:
     - target: {fileID: 3322340547825149133, guid: 6dd358167af3d7d43a48dfc2b2699867, type: 3}
       propertyPath: m_Name
       value: Window (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3322340547825149133, guid: 6dd358167af3d7d43a48dfc2b2699867, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7004395401473590438, guid: 6dd358167af3d7d43a48dfc2b2699867, type: 3}
       propertyPath: m_Color.a
@@ -6823,6 +6947,10 @@ PrefabInstance:
     - target: {fileID: 3322340547825149133, guid: 6dd358167af3d7d43a48dfc2b2699867, type: 3}
       propertyPath: m_Name
       value: Sofa
+      objectReference: {fileID: 0}
+    - target: {fileID: 3322340547825149133, guid: 6dd358167af3d7d43a48dfc2b2699867, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7004395401473590438, guid: 6dd358167af3d7d43a48dfc2b2699867, type: 3}
       propertyPath: m_Color.a
@@ -6918,17 +7046,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cluck
       objectReference: {fileID: 0}
+    - target: {fileID: 5607160988998311502, guid: 0ec022b9083693b4398c4807dd680893, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5607160988998311503, guid: 0ec022b9083693b4398c4807dd680893, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5607160988998311503, guid: 0ec022b9083693b4398c4807dd680893, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 5607160988998311503, guid: 0ec022b9083693b4398c4807dd680893, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6
+      value: -1.92
       objectReference: {fileID: 0}
     - target: {fileID: 5607160988998311503, guid: 0ec022b9083693b4398c4807dd680893, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7116,6 +7248,8 @@ MonoBehaviour:
   dialogueBox: {fileID: 773547581}
   interactReminder: {fileID: 1012753398}
   rowNum: 42
+  questInteractble: 1
+  Quest: Go to bed
 --- !u!114 &6615745122318657338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7131,6 +7265,8 @@ MonoBehaviour:
   dialogueBox: {fileID: 773547581}
   interactReminder: {fileID: 1012753398}
   rowNum: 31
+  questInteractble: 1
+  Quest: Play With Yarn
 --- !u!212 &6615745122318657340
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7341,6 +7477,8 @@ MonoBehaviour:
   dialogueBox: {fileID: 773547581}
   interactReminder: {fileID: 1012753398}
   rowNum: 34
+  questInteractble: 1
+  Quest: Visit Rock
 --- !u!61 &6615745122603093949
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7375,7 +7513,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6615745122630527601}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: -6, z: 0}
+  m_LocalPosition: {x: -1.75, y: -6.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1266067357}
@@ -7493,6 +7631,8 @@ MonoBehaviour:
   dialogueBox: {fileID: 773547581}
   interactReminder: {fileID: 1012753398}
   rowNum: 23
+  questInteractble: 1
+  Quest: Water Plants
 --- !u!61 &6615745122630527605
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7506,7 +7646,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.0024085045}
+  m_Offset: {x: 0, y: -0.039899588}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -7517,7 +7657,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.3150959}
+  m_Size: {x: 1.5, y: 1.2304797}
   m_EdgeRadius: 0
 --- !u!212 &6615745122724405176
 SpriteRenderer:
@@ -7559,8 +7699,8 @@ SpriteRenderer:
   m_SortingLayerID: -372786983
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.8117648, g: 0.45098042, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: f0eac850fc5909544b8cf81e0de88b1d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7583,18 +7723,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0064868927, y: -0.01699932}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.64, y: 0.64}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.61078787, y: 0.5988203}
   m_EdgeRadius: 0
 --- !u!4 &6615745122724405178
 Transform:
@@ -7604,8 +7744,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6615745122724405179}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 8.5, z: 0}
-  m_LocalScale: {x: 3, y: 1, z: 1}
+  m_LocalPosition: {x: -5.6576, y: 8.4919, z: 0}
+  m_LocalScale: {x: 1.667626, y: 1.5909152, z: 0.55587536}
   m_Children: []
   m_Father: {fileID: 1266067357}
   m_RootOrder: 0
@@ -7645,6 +7785,8 @@ MonoBehaviour:
   dialogueBox: {fileID: 773547581}
   interactReminder: {fileID: 1012753398}
   rowNum: 17
+  questInteractble: 0
+  Quest: 
 --- !u!61 &6615745122724405183
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7658,18 +7800,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.2}
+  m_Offset: {x: 0, y: -0.14560297}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.64, y: 0.64}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.5}
+  m_Size: {x: 1, y: 1.3912058}
   m_EdgeRadius: 0
 --- !u!114 &6615745123069348890
 MonoBehaviour:
@@ -7686,6 +7828,8 @@ MonoBehaviour:
   dialogueBox: {fileID: 773547581}
   interactReminder: {fileID: 1012753398}
   rowNum: 36
+  questInteractble: 1
+  Quest: Drink Water
 --- !u!61 &6615745123069348891
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7864,6 +8008,8 @@ MonoBehaviour:
   dialogueBox: {fileID: 773547581}
   interactReminder: {fileID: 1012753398}
   rowNum: 38
+  questInteractble: 1
+  Quest: Make Food
 --- !u!1 &6615745123558985492
 GameObject:
   m_ObjectHideFlags: 0
@@ -8080,7 +8226,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6615745123780883306}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.53, y: -4.55, z: 0}
+  m_LocalPosition: {x: -8.45, y: -6.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1266067357}
@@ -8127,3 +8273,5 @@ MonoBehaviour:
   dialogueBox: {fileID: 773547581}
   interactReminder: {fileID: 1012753398}
   rowNum: 28
+  questInteractble: 1
+  Quest: Read Book

@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using DG.Tweening;
 using static Constants;
 
 public class BattleManager : MonoBehaviour
 {
     public EventSystem eventSystem;
     public Player player;
+    public Transform gameOverUI;
 
     /// <summary> Player's prefab. Should be Assets/Prefabs/BattlePlayer.prefab </summary>
     public GameObject playerPrefab;
@@ -147,6 +150,14 @@ public class BattleManager : MonoBehaviour
         Flee();
     }
 
+    public void GameOver()
+    {
+        currentTurn = Turn.None;
+        gameOverUI.gameObject.SetActive(true);
+        gameOverUI.GetComponent<Image>().DOFade(1f, 2f);
+        EventSystem.current.SetSelectedGameObject(gameOverUI.GetChild(0).gameObject);
+    }
+
     public void Flee()
     {
         GameObject.FindObjectOfType<OverworldMovement>().controls.Overworld.Enable();
@@ -154,9 +165,22 @@ public class BattleManager : MonoBehaviour
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioListener>().enabled = true;
         SceneManager.UnloadSceneAsync("Battle");
 
+        foreach (AudioSource audioSource in GameObject.FindObjectsOfType<AudioSource>())
+        {
+            if (!audioSource.isPlaying && audioSource.playOnAwake)
+            {
+                audioSource.Play();
+            }
+        }
+
         foreach(Actor enemy in player.enemies)
         {
             Destroy(enemy.gameObject);
         }
+    }
+
+    public void QuitToTitle()
+    {
+        SceneManager.LoadScene(0);
     }
 }

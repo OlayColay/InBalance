@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class OverworldInteraction : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class OverworldInteraction : MonoBehaviour
 
     [SerializeField] private int rowNum;
     private HouseGlobals globals;
+
+    public bool questInteractble;
+    [SerializeField] private string Quest;
 
     private void Awake()
     {
@@ -29,6 +33,11 @@ public class OverworldInteraction : MonoBehaviour
                 {
                     dialogueBox.SetActive(false);
                     interactReminder.gameObject.SetActive(true);
+                    if (questInteractble)
+                    {
+                        GameObject.Find("QuestLog").GetComponent<QuestLog>().finishQuest(Quest);
+                        questInteractble = false;
+                    }
                 }
                 else
                 {
@@ -144,6 +153,7 @@ public class OverworldInteraction : MonoBehaviour
                 if (HouseGlobals.canSleep)
                 {
                     offset = 1;
+                    SceneManager.LoadScene("Cutscene_AfterHouse");
                 }
                 else
                 {
