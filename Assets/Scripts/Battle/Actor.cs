@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using DG.Tweening;
 using static Constants;
 
@@ -8,6 +9,7 @@ public class Actor : MonoBehaviour
 {
     protected BattleManager battleManager;
     public SpriteRenderer spriteRenderer;
+    public GameObject damageText;
 
     [SerializeField] protected int health = 100;
     /// <summary> Health points of the actor </summary>
@@ -129,6 +131,9 @@ public class Actor : MonoBehaviour
             spriteRenderer.color = Color.red;
         Invoke("ResetColor", 0.5f);
 
+        GameObject DT = Instantiate(damageText, transform.position + new Vector3(1, 1), Quaternion.identity);
+        DT.GetComponent<TextMeshPro>().text = (oldHP - this.HP).ToString();
+
         return this.HP < 1;
     }
 
@@ -184,7 +189,7 @@ public class Actor : MonoBehaviour
         transform.DOMove(enemies[0].transform.GetChild(0).position, 0.5f);
         int rand = Random.Range(0, abilities.Length);
         abilities[rand].Use(this, enemies[0]);
-        enemies[0].StartCoroutine(enemies[0].GetComponent<Player>().BlockTimingCoroutine(abilities[rand].power + Strength - enemies[0].Armor, type, this));
+        enemies[0].StartCoroutine(enemies[0].GetComponent<Player>().BlockTimingCoroutine(abilities[rand].power + Strength - enemies[0].Armor, type, this, 2f));
         Debug.Log(abilities[rand].displayName + " used against " + enemies[0].name + "!");
         // transform.DOMove(startPosition, 0.5f);
     }
