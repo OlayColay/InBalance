@@ -13,7 +13,7 @@ using System.IO;
  */
 public class CsvToDialogue
 {
-    static string csvFile = "Assets/Ludum Dare Team 5 Dialogue - Sheet1 (1).csv";
+    static string csvFile = "Assets/Ludum Dare Team 5 Dialogue.csv";
     static FileInfo theSourceFile = null;
     static StreamReader reader = null;
 
@@ -42,7 +42,7 @@ public class CsvToDialogue
         }
 
         fullCol = fullCol.Substring(temp + 1);
-        fullCol = fullCol.Remove(fullCol.Length - 1, 1);
+        fullCol = fullCol.Remove(fullCol.Length - 4, 4);
         if (fullCol.StartsWith("\""))
         {
             fullCol = fullCol.Remove(0, 1);
