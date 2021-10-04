@@ -199,7 +199,7 @@ public class Player : Actor
                 {
                     //The Player missed the window
                     Debug.Log("Missed!");
-                    if (attackCount < 2)
+                    if (attackCount < 2) // The last attack can't do damage if you miss
                         selectedEnemy.TakeDamage(0.5f * (10 + Strength - selectedEnemy.Armor), attemptedType);
                     attackCount = 10;
                 }
@@ -213,6 +213,7 @@ public class Player : Actor
         timeIndic.GetComponent<RectTransform>().anchoredPosition = startingPosition;
         if (!attackHit || 2 < attackCount)
         {
+            battleActions.Disable();
             transform.DOMove(playerBase.position, 0.5f);
             battleManager.Invoke("NextTurn", 1f);
             attackCount = 0;
