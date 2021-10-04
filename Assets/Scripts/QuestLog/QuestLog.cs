@@ -52,6 +52,8 @@ public class QuestLog : MonoBehaviour
 
     public void finishQuest(string quest)
     {
+        Destroy(questTexts[currQuests.IndexOf(quest)].gameObject);
+        questTexts.Remove(questTexts[currQuests.IndexOf(quest)]);
         currQuests.Remove(quest);
         setQuestBox();
     }
@@ -61,19 +63,25 @@ public class QuestLog : MonoBehaviour
         return currQuests.Contains(quest);
     }
 
-    void setQuestBox()
+    void clearQuestTexts()
     {
         if (questTexts != null)
         {
+            Debug.Log(questTexts.Count);
             for (int x = 0; x < questTexts.Count; x++)
             {
                 Destroy(questTexts[x].gameObject);
-                Destroy(checkboxes[x].gameObject);
+                //Destroy(checkboxes[x].gameObject);
             }
             questTexts.Clear();
             checkboxes.Clear();
         }
+    }
 
+    void setQuestBox()
+    {
+        clearQuestTexts();
+        
         for (int x = 0; x < currQuests.Count; x++)
         {
             questTexts.Add(Instantiate(questText).GetComponent<Text>());

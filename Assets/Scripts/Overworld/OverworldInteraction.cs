@@ -14,6 +14,9 @@ public class OverworldInteraction : MonoBehaviour
     [SerializeField] private int rowNum;
     private HouseGlobals globals;
 
+    public bool questInteractble;
+    [SerializeField] private string Quest;
+
     private void Awake()
     {
         interactReminder.text = defaultReminderText;
@@ -29,6 +32,11 @@ public class OverworldInteraction : MonoBehaviour
                 {
                     dialogueBox.SetActive(false);
                     interactReminder.gameObject.SetActive(true);
+                    if (questInteractble)
+                    {
+                        GameObject.Find("QuestLog").GetComponent<QuestLog>().finishQuest(Quest);
+                        questInteractble = false;
+                    }
                 }
                 else
                 {
