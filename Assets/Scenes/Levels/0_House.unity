@@ -7144,8 +7144,8 @@ MonoBehaviour:
   dialogueBox: {fileID: 773547581}
   interactReminder: {fileID: 1012753398}
   rowNum: 42
-  questInteractble: 0
-  Quest: 
+  questInteractble: 1
+  Quest: Go to bed
 --- !u!114 &6615745122318657338
 MonoBehaviour:
   m_ObjectHideFlags: 0
