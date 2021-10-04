@@ -17,6 +17,6 @@ public class Ability : MonoBehaviour
     /// <summary> Use the ability on the Actor's enemy </summary>
     public void Use(Actor owner, Actor target)
     {
-        target.TakeDamage(power + owner.Strength - target.Armor, type);
+        // target.TakeDamage(power + owner.Strength - target.Armor, type);
     }
 }

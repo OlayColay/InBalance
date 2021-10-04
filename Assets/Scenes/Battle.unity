@@ -1434,6 +1434,10 @@ PrefabInstance:
       propertyPath: playerActions
       value: 
       objectReference: {fileID: 968448758}
+    - target: {fileID: 8653869513861000812, guid: e3345c35d6071dd449afc3422a93c71f, type: 3}
+      propertyPath: playerActionsUI
+      value: 
+      objectReference: {fileID: 968448758}
     - target: {fileID: 8653869513861000813, guid: e3345c35d6071dd449afc3422a93c71f, type: 3}
       propertyPath: OnChangedHealth.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

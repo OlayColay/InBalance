@@ -732,6 +732,96 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Defend"",
+            ""id"": ""51e84989-3db4-4682-83a4-f5b4bea72ae6"",
+            ""actions"": [
+                {
+                    ""name"": ""Block"",
+                    ""type"": ""Button"",
+                    ""id"": ""74622a65-fb8c-4951-8b02-8cae36f8b337"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Parry"",
+                    ""type"": ""Button"",
+                    ""id"": ""03a5b631-9ac6-4ab9-a836-66f81697e582"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""091453f3-f26e-4047-aae2-55a182453e54"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Parry"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9ce45445-da24-4e9c-8069-9e116577aa5a"",
+                    ""path"": ""<XInputController>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Parry"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e4598bf0-5f5d-4495-bda1-828c3a1ca5b3"",
+                    ""path"": ""<SwitchProControllerHID>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Parry"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7b8a207d-0d56-4e0e-b317-a3891cc4ead3"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Block"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b353697a-e982-4c03-90ff-9bf3e5ca1c71"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Block"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5b63dd68-c286-4eb6-a02d-cdc1347012e0"",
+                    ""path"": ""<SwitchProControllerHID>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Block"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -756,6 +846,10 @@ public class @Controls : IInputActionCollection, IDisposable
         m_UI_Confirm = m_UI.FindAction("Confirm", throwIfNotFound: true);
         m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
         m_UI_Close = m_UI.FindAction("Close", throwIfNotFound: true);
+        // Defend
+        m_Defend = asset.FindActionMap("Defend", throwIfNotFound: true);
+        m_Defend_Block = m_Defend.FindAction("Block", throwIfNotFound: true);
+        m_Defend_Parry = m_Defend.FindAction("Parry", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -988,6 +1082,47 @@ public class @Controls : IInputActionCollection, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Defend
+    private readonly InputActionMap m_Defend;
+    private IDefendActions m_DefendActionsCallbackInterface;
+    private readonly InputAction m_Defend_Block;
+    private readonly InputAction m_Defend_Parry;
+    public struct DefendActions
+    {
+        private @Controls m_Wrapper;
+        public DefendActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Block => m_Wrapper.m_Defend_Block;
+        public InputAction @Parry => m_Wrapper.m_Defend_Parry;
+        public InputActionMap Get() { return m_Wrapper.m_Defend; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DefendActions set) { return set.Get(); }
+        public void SetCallbacks(IDefendActions instance)
+        {
+            if (m_Wrapper.m_DefendActionsCallbackInterface != null)
+            {
+                @Block.started -= m_Wrapper.m_DefendActionsCallbackInterface.OnBlock;
+                @Block.performed -= m_Wrapper.m_DefendActionsCallbackInterface.OnBlock;
+                @Block.canceled -= m_Wrapper.m_DefendActionsCallbackInterface.OnBlock;
+                @Parry.started -= m_Wrapper.m_DefendActionsCallbackInterface.OnParry;
+                @Parry.performed -= m_Wrapper.m_DefendActionsCallbackInterface.OnParry;
+                @Parry.canceled -= m_Wrapper.m_DefendActionsCallbackInterface.OnParry;
+            }
+            m_Wrapper.m_DefendActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Block.started += instance.OnBlock;
+                @Block.performed += instance.OnBlock;
+                @Block.canceled += instance.OnBlock;
+                @Parry.started += instance.OnParry;
+                @Parry.performed += instance.OnParry;
+                @Parry.canceled += instance.OnParry;
+            }
+        }
+    }
+    public DefendActions @Defend => new DefendActions(this);
     public interface IBattleActions
     {
         void OnBlock(InputAction.CallbackContext context);
@@ -1010,5 +1145,10 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnConfirm(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
         void OnClose(InputAction.CallbackContext context);
+    }
+    public interface IDefendActions
+    {
+        void OnBlock(InputAction.CallbackContext context);
+        void OnParry(InputAction.CallbackContext context);
     }
 }

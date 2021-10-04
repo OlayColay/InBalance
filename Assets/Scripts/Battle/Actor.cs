@@ -104,6 +104,8 @@ public class Actor : MonoBehaviour
     /// <summary> If the actor is currently attacking </summary>
     public bool isAttacking = false;
 
+    public Vector3 startPosition;
+
     private void Start()
     {
         battleManager = GameObject.FindObjectOfType<BattleManager>();
@@ -111,8 +113,9 @@ public class Actor : MonoBehaviour
     }
 
     /// <summary> Actor has HP reduced depending on element of the attack </summary>
-    public void TakeDamage(float damageAmount, Type damageType)
+    public virtual void TakeDamage(float damageAmount, Type damageType)
     {
+        int oldHP = this.HP;
         if (isStrongAgainst(damageType))
             this.HP -= (int)(damageAmount * resistantMultiplier);
         else if (isWeakAgainst(damageType))
@@ -120,7 +123,10 @@ public class Actor : MonoBehaviour
         else
             this.HP -= (int)damageAmount;
 
-        spriteRenderer.color = Color.red;
+        if (oldHP < this.HP)
+            spriteRenderer.color = Color.green;
+        else if (this.HP < oldHP)
+            spriteRenderer.color = Color.red;
         Invoke("ResetColor", 0.5f);
     }
 
@@ -172,10 +178,11 @@ public class Actor : MonoBehaviour
     /// <summary> Enemies pick a random ability of theirs to attack with </summary>
     public virtual void Attack()
     {
-        Vector3 startPosition = transform.position;
+        startPosition = transform.position;
         transform.DOMove(enemies[0].transform.GetChild(0).position, 0.5f);
         int rand = Random.Range(0, abilities.Length);
         abilities[rand].Use(this, enemies[0]);
+        enemies[0].StartCoroutine(enemies[0].GetComponent<Player>().BlockTimingCoroutine(abilities[rand].power + Strength - enemies[0].Armor, type, this));
         Debug.Log(abilities[rand].displayName + " used against " + enemies[0].name + "!");
         // transform.DOMove(startPosition, 0.5f);
     }
