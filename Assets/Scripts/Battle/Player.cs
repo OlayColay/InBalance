@@ -12,6 +12,7 @@ public class Player : Actor
 {
     private Health healthScript;
     public Animator animator;
+    public ParticleSystem particleSystem;
     public Controls.BattleActions battleActions;
     public Controls.DefendActions defendActions;
     [SerializeField] private GameObject playerActionsUI;
@@ -335,5 +336,41 @@ public class Player : Actor
     {
         if (selectedEnemy.TakeDamage(10 + Strength - selectedEnemy.Armor, attemptedType) && 2 < attackCount)
             battleActions.Disable();
+    }
+
+    public void AttackParticles()
+    {
+        var main = particleSystem.main;
+        switch (type)
+        {
+            case Type.Air:
+                main.startColor = Color.cyan;
+                break;
+            case Type.Water:
+                main.startColor = Color.blue;
+                break;
+            case Type.Earth:
+                main.startColor = Color.green;
+                break;
+            case Type.Fire:
+                main.startColor = Color.red;
+                break;
+            case Type.Electric:
+                main.startColor = Color.yellow;
+                break;
+            case Type.Physical:
+                main.startColor = Color.white;
+                break;
+        }
+        particleSystem.transform.SetParent(null);
+        particleSystem.Play();
+        Invoke("ResetParticles", 1.5f);
+    }
+
+    private void ResetParticles()
+    {
+        particleSystem.Stop();
+        particleSystem.transform.SetParent(this.transform);
+        particleSystem.transform.localPosition = Vector3.zero;
     }
 }
