@@ -139,9 +139,8 @@ public class BattleManager : MonoBehaviour
         playerActionsUI.SetActive(false);
         currentTurn = Turn.None;
         overworldEnemy.SetActive(false);
-        GameObject.FindObjectOfType<OverworldMovement>().controls.Overworld.Enable();
-        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = true;
-        SceneManager.UnloadSceneAsync("Battle");
+        
+        Flee();
     }
 
     public void Flee()
@@ -149,5 +148,10 @@ public class BattleManager : MonoBehaviour
         GameObject.FindObjectOfType<OverworldMovement>().controls.Overworld.Enable();
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = true;
         SceneManager.UnloadSceneAsync("Battle");
+
+        foreach(Actor enemy in player.enemies)
+        {
+            Destroy(enemy.gameObject);
+        }
     }
 }
