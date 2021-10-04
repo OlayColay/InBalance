@@ -167,9 +167,13 @@ public class Player : Actor
         if (invulnerable)
         {
             damageAmount /= 2;
-            invulnerable = false;
         }
         base.TakeDamage(damageAmount, damageType);
+        if (invulnerable)
+        {
+            spriteRenderer.color = Color.white;
+            invulnerable = false;
+        }
     }
 
     //Coroutine for checking if player hits the critical strike on an attack
@@ -269,8 +273,8 @@ public class Player : Actor
     public IEnumerator BlockTimingCoroutine(int damage, Type attackType, Actor owner)
     {
         float totalAttackTime = 3f;
-        float critWindowStart = 1f;
-        float critWindowEnd = 2f;
+        float critWindowStart = totalAttackTime - 2f / 3f;
+        float critWindowEnd = critWindowStart + 1f / 3f;
         float currTime = 0f;
         bool chanceUsed = false;
         Vector3 startingPosition = timeIndic.GetComponent<RectTransform>().anchoredPosition;
@@ -294,6 +298,7 @@ public class Player : Actor
             //The Player hits the input button
             if (!chanceUsed && attemptAction)
             {
+                animator.SetTrigger("Block");
                 if (currTime > critWindowStart && currTime < critWindowEnd)
                 {
                     Debug.Log("Defended!");
