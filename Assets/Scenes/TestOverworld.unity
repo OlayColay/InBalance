@@ -1147,9 +1147,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   opponents:
-  - {fileID: 8835983937570443776, guid: ab94ba0e98e78764bb0cc69ba15be6d3, type: 3}
-  - {fileID: 1965203579764227269, guid: c3ae27de32fd3b54d8572581f06fd7cc, type: 3}
+  - {fileID: 743906617748171143, guid: 4c83b1fe04e933f4fba30e30f65e2cd0, type: 3}
   - {fileID: 743906617748171143, guid: 53e608a4805843d4187931e9bc114208, type: 3}
+  - {fileID: 743906617748171143, guid: f5d92f70c212afc4cb9cbe760890a010, type: 3}
 --- !u!1 &1517641243
 GameObject:
   m_ObjectHideFlags: 0
