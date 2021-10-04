@@ -27,6 +27,8 @@ public class QuestLog : MonoBehaviour
     public int spacing = 35;
     public int backgroundXSize = 300;
 
+    private bool bedDone = false;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -36,12 +38,6 @@ public class QuestLog : MonoBehaviour
             Debug.Log("here");
         }
         setQuestBox();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void addQuest(string quest)
@@ -55,6 +51,16 @@ public class QuestLog : MonoBehaviour
         Destroy(questTexts[currQuests.IndexOf(quest)].gameObject);
         questTexts.Remove(questTexts[currQuests.IndexOf(quest)]);
         currQuests.Remove(quest);
+        if (!bedDone && currQuests.Count < 1)
+        {
+            currQuests = new List<string>();
+            currQuests.Add("Go to bed");
+            bedDone = true;
+        }
+        else if (bedDone)
+        {
+            Destroy(this.gameObject);
+        }
         setQuestBox();
     }
 
