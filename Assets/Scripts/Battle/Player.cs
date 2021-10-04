@@ -153,7 +153,8 @@ public class Player : Actor
         Debug.Log("Player rests!");
         playerActionsUI.SetActive(false);
         HP += MaxHP / 3;
-        battleManager.NextTurn();
+        battleManager.Invoke("NextTurn", 0.5f);
+        animator.SetTrigger("Rest");
     }
 
     public void Attack(Type type = Type.Physical)
