@@ -5,15 +5,13 @@ using UnityEngine;
 public class globals
 {
     public static List<string> currQuests;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
+    /// <summary> Array of experience for player's elements </summary>
+    public static int[] elementExperience = {0, 0, 0, 0, 0, 0};
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    /// <summary> Array that experience has to reach to level up </summary>
+    public static int[] nextLevel = {5, 5, 5, 5, 5, 5};
+
+    /// <summary> Element meters of the player </summary>
+    public static int[] elementMeters = {0, 0, 0, 0, 0, 0};
 }

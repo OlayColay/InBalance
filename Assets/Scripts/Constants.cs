@@ -6,12 +6,12 @@ public static class Constants : object
 {
     public enum Type
     {
-        Physical,
         Air,
         Water,
         Earth,
         Fire,
-        Electric
+        Electric,
+        Physical
     }
 
     public enum Turn

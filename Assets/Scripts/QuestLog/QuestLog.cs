@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 /*
  * Manager for the Quest Log
@@ -17,15 +18,20 @@ public class QuestLog : MonoBehaviour
     public List<Text> questTexts;
     public List<Image> checkboxes;
     public Image Background;
+    public Image blackScreen;
 
     public GameObject checkBox;
     public GameObject questText;
+
+    public RunMultipleDialogue dialogueBox;
 
     public int startYPos = -40;
     public int startXPosText = 0;
     public int startXPosCheck = 0;
     public int spacing = 35;
     public int backgroundXSize = 300;
+
+    private bool bedDone = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -38,10 +44,15 @@ public class QuestLog : MonoBehaviour
         setQuestBox();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        blackScreen.gameObject.SetActive(true);
+        blackScreen.DOFade(0f, 1f).SetEase(Ease.Linear).OnComplete(() => {
+            dialogueBox.loadDialogue(5, 1);
+            dialogueBox.gameObject.SetActive(true);
+            dialogueBox.startDialogue();
+            blackScreen.gameObject.SetActive(false);
+        });
     }
 
     public void addQuest(string quest)
@@ -52,7 +63,19 @@ public class QuestLog : MonoBehaviour
 
     public void finishQuest(string quest)
     {
+        Destroy(questTexts[currQuests.IndexOf(quest)].gameObject);
+        questTexts.Remove(questTexts[currQuests.IndexOf(quest)]);
         currQuests.Remove(quest);
+        if (!bedDone && currQuests.Count < 1)
+        {
+            currQuests = new List<string>();
+            currQuests.Add("Go to bed");
+            bedDone = true;
+        }
+        else if (bedDone)
+        {
+            Destroy(this.gameObject);
+        }
         setQuestBox();
     }
 
@@ -61,19 +84,25 @@ public class QuestLog : MonoBehaviour
         return currQuests.Contains(quest);
     }
 
-    void setQuestBox()
+    void clearQuestTexts()
     {
         if (questTexts != null)
         {
+            Debug.Log(questTexts.Count);
             for (int x = 0; x < questTexts.Count; x++)
             {
                 Destroy(questTexts[x].gameObject);
-                Destroy(checkboxes[x].gameObject);
+                //Destroy(checkboxes[x].gameObject);
             }
             questTexts.Clear();
             checkboxes.Clear();
         }
+    }
 
+    void setQuestBox()
+    {
+        clearQuestTexts();
+        
         for (int x = 0; x < currQuests.Count; x++)
         {
             questTexts.Add(Instantiate(questText).GetComponent<Text>());

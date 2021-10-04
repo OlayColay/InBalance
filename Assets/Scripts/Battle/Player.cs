@@ -7,11 +7,13 @@ using UnityEngine.UI;
 using YounGenTech.HealthScript;
 using DG.Tweening;
 using static Constants;
+using static globals;
 
 public class Player : Actor
 {
     private Health healthScript;
     public Animator animator;
+    public ParticleSystem particleSystem;
     public Controls.BattleActions battleActions;
     public Controls.DefendActions defendActions;
     [SerializeField] private GameObject playerActionsUI;
@@ -61,35 +63,6 @@ public class Player : Actor
                     return;
             }
             if (battleActions.enabled) transform.DOMove(selectedEnemy.transform.GetChild(0).position, 0.5f);
-        }
-    }
-
-    /// <summary> Element meters of the player </summary>
-    public int[] elementMeters = {0, 0, 0, 0, 0};
-
-    private int[] elementExperience = {0, 0, 0, 0, 0};
-    /// <summary> Array of experience for player's elements </summary>
-    public int[] EXP {
-        get
-        {
-            return elementExperience;
-        }
-        set
-        {
-            elementExperience = value;
-        }
-    }
-
-    private int[] nextLevel = {100, 100, 100, 100, 100};
-    /// <summary> Array that experience has to reach to level up </summary>
-    public int[] MaxEXP {
-        get
-        {
-            return nextLevel;
-        }
-        set
-        {
-            nextLevel = value;
         }
     }
 
@@ -214,12 +187,19 @@ public class Player : Actor
             //The Player hits the input button
             if (!chanceUsed && attemptAction)
             {
+                int typeInt = (int)attemptedType;
                 if (currTime > critWindowStart && currTime < critWindowEnd)
                 {
                     Debug.Log(attemptedType.ToString() + " attack performed against " + selectedEnemy.name + "!");
                     animator.SetTrigger("Attack");
                     this.type = attemptedType;
                     attackHit = true;
+                    elementExperience[typeInt]++;
+                    if (elementExperience[typeInt] >= nextLevel[typeInt])
+                    {
+                        elementExperience[typeInt] = 0;
+                        elementMeters[typeInt]++;
+                    }
                     attackCount++;
                 }
                 else
@@ -227,7 +207,7 @@ public class Player : Actor
                     //The Player missed the window
                     Debug.Log("Missed!");
                     if (attackCount < 2) // The last attack can't do damage if you miss
-                        if (selectedEnemy.TakeDamage(0.5f * (10 + Strength - selectedEnemy.Armor), attemptedType))
+                        if (selectedEnemy.TakeDamage(0.5f * (10 + Strength + elementMeters[typeInt] - selectedEnemy.Armor), attemptedType))
                             battleActions.Disable();
                     attackCount = 10;
                 }
@@ -333,7 +313,43 @@ public class Player : Actor
     // Called by attack animation
     public void GiveDamage()
     {
-        if (selectedEnemy.TakeDamage(10 + Strength - selectedEnemy.Armor, attemptedType) && 2 < attackCount)
+        if (selectedEnemy.TakeDamage(10 + Strength + elementMeters[(int)type] - selectedEnemy.Armor, attemptedType) && 2 < attackCount)
             battleActions.Disable();
+    }
+
+    public void AttackParticles()
+    {
+        var main = particleSystem.main;
+        switch (type)
+        {
+            case Type.Air:
+                main.startColor = Color.cyan;
+                break;
+            case Type.Water:
+                main.startColor = Color.blue;
+                break;
+            case Type.Earth:
+                main.startColor = Color.green;
+                break;
+            case Type.Fire:
+                main.startColor = Color.red;
+                break;
+            case Type.Electric:
+                main.startColor = Color.yellow;
+                break;
+            case Type.Physical:
+                main.startColor = Color.white;
+                break;
+        }
+        particleSystem.transform.SetParent(null);
+        particleSystem.Play();
+        Invoke("ResetParticles", 1.5f);
+    }
+
+    private void ResetParticles()
+    {
+        particleSystem.Stop();
+        particleSystem.transform.SetParent(this.transform);
+        particleSystem.transform.localPosition = Vector3.zero;
     }
 }

@@ -108,7 +108,7 @@ public class Actor : MonoBehaviour
 
     public Vector3 startPosition;
 
-    private void Start()
+    protected virtual void Start()
     {
         battleManager = GameObject.FindObjectOfType<BattleManager>();
         GetEnemies();
