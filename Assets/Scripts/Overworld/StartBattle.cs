@@ -18,7 +18,7 @@ public class StartBattle : MonoBehaviour
         if (other.tag == "Player")
         {
             GameObject.FindObjectOfType<OverworldMovement>().controls.Overworld.Disable();
-            SceneManager.LoadScene(0, LoadSceneMode.Additive);
+            SceneManager.LoadScene("Battle", LoadSceneMode.Additive);
 
             if (!battledOnce)
             {

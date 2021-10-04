@@ -12,12 +12,13 @@ public class Aeolus : Actor
     protected override void Start()
     {
         base.Start();
+        transform.position += new Vector3(1, 2, 0);
         startPosition = transform.position;
     }
 
     public override void Attack()
     {
-        enemies[0].StartCoroutine(enemies[0].GetComponent<Player>().BlockTimingCoroutine(20 + Strength - enemies[0].Armor, type, this, 2f));
+        enemies[0].StartCoroutine(enemies[0].GetComponent<Player>().BlockTimingCoroutine(20 + Strength - enemies[0].Armor, type, this, 1.75f));
         Debug.Log("Air Cutter used against " + enemies[0].name + "!");
         Invoke("AirCutter", 1f);
     }
@@ -25,8 +26,8 @@ public class Aeolus : Actor
     private void AirCutter()
     {
         spriteRenderer.sprite = attack;
-        GameObject slash = Instantiate(airCut, transform.position - new Vector3(1, 0, 0), Quaternion.identity);
-        slash.transform.DOMove(enemies[0].transform.position, 1f).OnComplete(() => {ReturnToNormal(); Destroy(slash);});
+        GameObject slash = Instantiate(airCut, transform.position, Quaternion.identity);
+        slash.transform.DOMove(enemies[0].transform.position + new Vector3(3, 0, 0), 0.75f).SetEase(Ease.Linear).OnComplete(() => {ReturnToNormal(); Destroy(slash);});
     }
 
     public override bool TakeDamage(float damageAmount, Constants.Type damageType)
