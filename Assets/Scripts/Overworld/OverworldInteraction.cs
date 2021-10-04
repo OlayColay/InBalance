@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class OverworldInteraction : MonoBehaviour
 {
@@ -152,6 +153,7 @@ public class OverworldInteraction : MonoBehaviour
                 if (HouseGlobals.canSleep)
                 {
                     offset = 1;
+                    SceneManager.LoadScene("Starting");
                 }
                 else
                 {

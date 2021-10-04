@@ -7,7 +7,7 @@ public class TitleScreen : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("0_House");
+        SceneManager.LoadScene(2);
     }
 
     public void QuitGame()
