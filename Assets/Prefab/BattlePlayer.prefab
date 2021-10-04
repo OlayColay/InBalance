@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 8653869513861000815}
   - component: {fileID: 8653869513861000813}
   - component: {fileID: 8653869513861000812}
+  - component: {fileID: 2760951878459114422}
   m_Layer: 0
   m_Name: BattlePlayer
   m_TagString: Player
@@ -104,7 +105,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 55
-  m_Sprite: {fileID: 8037817870232118442, guid: b7a72075037a76a4095029c0d5cb92c6, type: 3}
+  m_Sprite: {fileID: 5637368675404135891, guid: 8eb0574534785704c9f6e8d52cab6f32, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -222,9 +223,29 @@ MonoBehaviour:
   abilities: []
   enemies: []
   isAttacking: 0
-  playerActions: {fileID: 0}
+  startPosition: {x: 0, y: 0, z: 0}
+  playerActionsUI: {fileID: 0}
   playerBase: {fileID: 0}
   selectedEnemy: {fileID: 0}
-  inAttack: 0
   timeIndic: {fileID: 0}
+  invulnerable: 0
   elementMeters: 0000000000000000000000000000000000000000
+--- !u!95 &2760951878459114422
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8653869513861000800}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 622a9742ef01e1c49ad2a081b67f4e4a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
