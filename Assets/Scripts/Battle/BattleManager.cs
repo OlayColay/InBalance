@@ -147,6 +147,7 @@ public class BattleManager : MonoBehaviour
     {
         GameObject.FindObjectOfType<OverworldMovement>().controls.Overworld.Enable();
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = true;
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioListener>().enabled = true;
         SceneManager.UnloadSceneAsync("Battle");
 
         foreach(Actor enemy in player.enemies)

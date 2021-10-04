@@ -205,8 +205,7 @@ public class Actor : MonoBehaviour
 
     private void SetDead()
     {
-        this.enabled = false;
-        gameObject.SetActive(false);
+        Destroy(this.gameObject);
 
         foreach (Actor enemy in enemies)
         {
