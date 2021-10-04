@@ -97,17 +97,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1965203579764227266}
+  damageText: {fileID: 7872077071506692991, guid: 88d9a54d70d6c1e47bd3afcf5a5a7d87, type: 3}
   health: 20
   maxHealth: 20
   strength: 10
   armor: 10
   wisdom: 0
   resist: 0
-  type: 3
+  type: 2
   abilities:
   - {fileID: -3298260198520459821, guid: 9a96356f8571d1e47995163b5604d863, type: 3}
   enemies: []
   isAttacking: 0
+  startPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &4840049180424501574
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,7 +22,9 @@ public class BattleManager : MonoBehaviour
     /// <summary> Spawnpoints of combatants. Player's is the first in the array </summary>
     public Transform[] spawnpoints;
 
-    public void SpawnOpponents(GameObject[] opponents)
+    private GameObject overworldEnemy;
+
+    public void SpawnOpponents(GameObject[] opponents, GameObject overworldObject)
     {
         switch(opponents.Length)
         {
@@ -43,6 +45,8 @@ public class BattleManager : MonoBehaviour
                 break;
         }
         player.GetEnemies();
+
+        overworldEnemy = overworldObject;
     }
 
     // Start is called before the first frame update
@@ -111,30 +115,48 @@ public class BattleManager : MonoBehaviour
     private void PlayerToEnemyTurn()
     {
         player.battleActions.Disable();
-        NextTurn();
+        Invoke("NextTurn", 0.5f);
     }
 
     /// <summary> An enemy's turn </summary>
     private void EnemyTurn(int enemyNum)
     {
+        player.defendActions.Enable();
         player.enemies[enemyNum].Attack();
-        Invoke("NextTurn", 1);
     }
 
     /// <summary> Turn after player and before enemy. Some dialouge could happen here </summary>
     private void EnemyToPlayerTurn()
     {
-        NextTurn();
+        player.defendActions.Disable();
+        Invoke("NextTurn", 0.5f);
     }
 
     /// <summary> TODO: End the battle, do whatever victory animations happen, and return to overworld </summary>
-    public void Victory()
+    public IEnumerator Victory()
     {
+        while (currentTurn != Turn.PlayerToEnemies)
+        {
+            yield return 0;
+        }
         player.battleActions.Disable();
         playerActionsUI.SetActive(false);
         currentTurn = Turn.None;
+        overworldEnemy.SetActive(false);
+        
+        Flee();
+    }
+
+    public void Flee()
+    {
         GameObject.FindObjectOfType<OverworldMovement>().controls.Overworld.Enable();
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = true;
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioListener>().enabled = true;
         SceneManager.UnloadSceneAsync("Battle");
+
+        foreach(Actor enemy in player.enemies)
+        {
+            Destroy(enemy.gameObject);
+        }
     }
 }

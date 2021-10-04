@@ -7,25 +7,30 @@ using UnityEngine.UI;
 using YounGenTech.HealthScript;
 using DG.Tweening;
 using static Constants;
+using static globals;
 
 public class Player : Actor
 {
     private Health healthScript;
+    public Animator animator;
+    public ParticleSystem particleSystem;
     public Controls.BattleActions battleActions;
-    [SerializeField] private GameObject playerActions;
+    public Controls.DefendActions defendActions;
+    [SerializeField] private GameObject playerActionsUI;
 
     public Transform playerBase;
 
     /// <summary> The type that the button a player pushes is for </summary>
     private Type attemptedType = Type.Physical;
-    private bool attemptAttack = false;
+    private bool attemptAction = false;
     
     public Actor selectedEnemy;
     private int selectedEnemyNum = 0;
     private int attackCount = 0;
 
-    public bool inAttack = false;
     public GameObject timeIndic;
+
+    public bool invulnerable = false;
 
     /// <summary> The enemy that the player will attack </summary>
     public int SelectedEnemyNum {
@@ -61,35 +66,6 @@ public class Player : Actor
         }
     }
 
-    /// <summary> Element meters of the player </summary>
-    public int[] elementMeters = {0, 0, 0, 0, 0};
-
-    private int[] elementExperience = {0, 0, 0, 0, 0};
-    /// <summary> Array of experience for player's elements </summary>
-    public int[] EXP {
-        get
-        {
-            return elementExperience;
-        }
-        set
-        {
-            elementExperience = value;
-        }
-    }
-
-    private int[] nextLevel = {100, 100, 100, 100, 100};
-    /// <summary> Array that experience has to reach to level up </summary>
-    public int[] MaxEXP {
-        get
-        {
-            return nextLevel;
-        }
-        set
-        {
-            nextLevel = value;
-        }
-    }
-
     public override int HP {
         set
         {
@@ -110,8 +86,9 @@ public class Player : Actor
     private void Awake()
     {
         healthScript = GetComponent<Health>();
-        
+
         battleActions = new Controls().Battle;
+        defendActions = new Controls().Defend;
 
         battleActions.Physical.performed += ctx => Attack(Type.Physical);
         battleActions.Air.performed += ctx => Attack(Type.Air);
@@ -122,6 +99,8 @@ public class Player : Actor
 
         battleActions.DirectionalInput.performed += ctx => SelectedEnemyNum = ctx.ReadValue<float>() < 0 ? 2 : 0;
         battleActions.DirectionalInput.canceled += ctx => SelectedEnemyNum = 1;
+
+        defendActions.Block.performed += ctx => attemptAction = true;
 
         timeIndic = GameObject.Find("TimingIndicator");
 
@@ -137,7 +116,7 @@ public class Player : Actor
     {
         Debug.Log("Player attacks!");
         battleActions.Enable();
-        playerActions.SetActive(false);
+        playerActionsUI.SetActive(false);
         transform.DOMove(selectedEnemy.transform.GetChild(0).position, 0.5f);
         StartCoroutine(AttackTimingCoroutine());
     }
@@ -145,14 +124,32 @@ public class Player : Actor
     public void RestSelected()
     {
         Debug.Log("Player rests!");
+        playerActionsUI.SetActive(false);
         HP += MaxHP / 3;
-        battleManager.NextTurn();
+        battleManager.Invoke("NextTurn", 0.5f);
+        animator.SetTrigger("Rest");
     }
 
     public void Attack(Type type = Type.Physical)
     {
         attemptedType = type;
-        attemptAttack = true;
+        attemptAction = true;
+    }
+
+    public override bool TakeDamage(float damageAmount, Type damageType)
+    {
+        if (invulnerable)
+        {
+            damageAmount /= 2;
+        }
+        base.TakeDamage(damageAmount, damageType);
+        if (invulnerable)
+        {
+            spriteRenderer.color = Color.white;
+            invulnerable = false;
+        }
+
+        return this.HP < 1;
     }
 
     //Coroutine for checking if player hits the critical strike on an attack
@@ -162,14 +159,17 @@ public class Player : Actor
     //the timeIndic is a temporary UI time indicator for visualizations before animations are finished
     IEnumerator AttackTimingCoroutine()
     {
-        inAttack = true;
-        float totalAttackTime = 3f;
-        float critWindowStart = 1f;
-        float critWindowEnd = 2f;
+        float totalAttackTime = 2f;
+        float critWindowStart = 0.5f;
+        float critWindowEnd = 0.92f;
         float currTime = 0f;
         bool attackHit = false;
         bool chanceUsed = false;
         Vector3 startingPosition = timeIndic.GetComponent<RectTransform>().anchoredPosition;
+
+        attemptAction = false;
+        animator.SetTrigger("StartAttack");
+
         while (currTime < totalAttackTime)
         {
             yield return 0;
@@ -185,14 +185,21 @@ public class Player : Actor
             }
 
             //The Player hits the input button
-            if (!chanceUsed && attemptAttack)
+            if (!chanceUsed && attemptAction)
             {
+                int typeInt = (int)attemptedType;
                 if (currTime > critWindowStart && currTime < critWindowEnd)
                 {
                     Debug.Log(attemptedType.ToString() + " attack performed against " + selectedEnemy.name + "!");
+                    animator.SetTrigger("Attack");
                     this.type = attemptedType;
-                    selectedEnemy.TakeDamage(10 + Strength - selectedEnemy.Armor, attemptedType);
                     attackHit = true;
+                    elementExperience[typeInt]++;
+                    if (elementExperience[typeInt] >= nextLevel[typeInt])
+                    {
+                        elementExperience[typeInt] = 0;
+                        elementMeters[typeInt]++;
+                    }
                     attackCount++;
                 }
                 else
@@ -200,16 +207,23 @@ public class Player : Actor
                     //The Player missed the window
                     Debug.Log("Missed!");
                     if (attackCount < 2) // The last attack can't do damage if you miss
-                        selectedEnemy.TakeDamage(0.5f * (10 + Strength - selectedEnemy.Armor), attemptedType);
+                        if (selectedEnemy.TakeDamage(0.5f * (10 + Strength + elementMeters[typeInt] - selectedEnemy.Armor), attemptedType))
+                            battleActions.Disable();
                     attackCount = 10;
                 }
+
+                if (selectedEnemy.HP < 1 && 2 < attackCount)
+                {
+                    battleActions.Disable();
+                }
                 chanceUsed = true;
-                attemptAttack = false;
             }
+
+            if (enemies.Length < 1)
+                attackCount = 10;
         }
         // Debug.Log("finish");
 
-        inAttack = false;
         timeIndic.GetComponent<RectTransform>().anchoredPosition = startingPosition;
         if (!attackHit || 2 < attackCount)
         {
@@ -232,7 +246,7 @@ public class Player : Actor
         if (currentEnemies.Length == 0)
         {
             // Victory!
-            battleManager.Victory();
+            battleManager.StartCoroutine(battleManager.Victory());
         }
         if (enemies.Length != currentEnemies.Length)
         {
@@ -248,8 +262,94 @@ public class Player : Actor
         SelectedEnemyNum = SelectedEnemyNum;
     }
 
+    public IEnumerator BlockTimingCoroutine(int damage, Type attackType, Actor owner, float timeBeforeDamage)
+    {
+        float critWindowStart = timeBeforeDamage - 2f / 3f;
+        float critWindowEnd = critWindowStart + 1f / 3f;
+        float currTime = 0f;
+        bool chanceUsed = false;
+        Vector3 startingPosition = timeIndic.GetComponent<RectTransform>().anchoredPosition;
+        
+        attemptAction = false;
+
+        while (currTime < timeBeforeDamage)
+        {
+            yield return 0;
+            currTime += Time.deltaTime;
+            timeIndic.GetComponent<RectTransform>().anchoredPosition = startingPosition + new Vector3((600 * currTime) / timeBeforeDamage, 0, 0);
+            if (currTime > critWindowStart && currTime < critWindowEnd)
+            {
+                timeIndic.GetComponent<Image>().color = Color.white;
+            }
+            else
+            {
+                timeIndic.GetComponent<Image>().color = Color.black;
+            }
+
+            //The Player hits the input button
+            if (!chanceUsed && attemptAction)
+            {
+                animator.SetTrigger("Block");
+                if (currTime > critWindowStart && currTime < critWindowEnd)
+                {
+                    Debug.Log("Defended!");
+                    invulnerable = true;
+                }
+                chanceUsed = true;
+            }
+        }
+        // Debug.Log("finish");
+        TakeDamage(damage, attackType);
+        timeIndic.GetComponent<RectTransform>().anchoredPosition = startingPosition;
+        owner.transform.DOMove(owner.startPosition, 0.5f);
+        battleManager.Invoke("NextTurn", 1f);
+    }
+
     public override void Die()
     {
         gameObject.SetActive(false);    
+    }
+
+    // Called by attack animation
+    public void GiveDamage()
+    {
+        if (selectedEnemy.TakeDamage(10 + Strength + elementMeters[(int)type] - selectedEnemy.Armor, attemptedType) && 2 < attackCount)
+            battleActions.Disable();
+    }
+
+    public void AttackParticles()
+    {
+        var main = particleSystem.main;
+        switch (type)
+        {
+            case Type.Air:
+                main.startColor = Color.cyan;
+                break;
+            case Type.Water:
+                main.startColor = Color.blue;
+                break;
+            case Type.Earth:
+                main.startColor = Color.green;
+                break;
+            case Type.Fire:
+                main.startColor = Color.red;
+                break;
+            case Type.Electric:
+                main.startColor = Color.yellow;
+                break;
+            case Type.Physical:
+                main.startColor = Color.white;
+                break;
+        }
+        particleSystem.transform.SetParent(null);
+        particleSystem.Play();
+        Invoke("ResetParticles", 1.5f);
+    }
+
+    private void ResetParticles()
+    {
+        particleSystem.Stop();
+        particleSystem.transform.SetParent(this.transform);
+        particleSystem.transform.localPosition = Vector3.zero;
     }
 }

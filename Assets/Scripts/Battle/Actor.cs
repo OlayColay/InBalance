@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using DG.Tweening;
 using static Constants;
 
@@ -8,6 +9,7 @@ public class Actor : MonoBehaviour
 {
     protected BattleManager battleManager;
     public SpriteRenderer spriteRenderer;
+    public GameObject damageText;
 
     [SerializeField] protected int health = 100;
     /// <summary> Health points of the actor </summary>
@@ -104,15 +106,18 @@ public class Actor : MonoBehaviour
     /// <summary> If the actor is currently attacking </summary>
     public bool isAttacking = false;
 
-    private void Start()
+    public Vector3 startPosition;
+
+    protected virtual void Start()
     {
         battleManager = GameObject.FindObjectOfType<BattleManager>();
         GetEnemies();
     }
 
     /// <summary> Actor has HP reduced depending on element of the attack </summary>
-    public void TakeDamage(float damageAmount, Type damageType)
+    public virtual bool TakeDamage(float damageAmount, Type damageType)
     {
+        int oldHP = this.HP;
         if (isStrongAgainst(damageType))
             this.HP -= (int)(damageAmount * resistantMultiplier);
         else if (isWeakAgainst(damageType))
@@ -120,8 +125,16 @@ public class Actor : MonoBehaviour
         else
             this.HP -= (int)damageAmount;
 
-        spriteRenderer.color = Color.red;
+        if (oldHP < this.HP)
+            spriteRenderer.color = Color.green;
+        else if (this.HP < oldHP)
+            spriteRenderer.color = Color.red;
         Invoke("ResetColor", 0.5f);
+
+        GameObject DT = Instantiate(damageText, transform.position + new Vector3(1, 1), Quaternion.identity);
+        DT.GetComponent<TextMeshPro>().text = (oldHP - this.HP).ToString();
+
+        return this.HP < 1;
     }
 
     private void ResetColor()
@@ -172,10 +185,11 @@ public class Actor : MonoBehaviour
     /// <summary> Enemies pick a random ability of theirs to attack with </summary>
     public virtual void Attack()
     {
-        Vector3 startPosition = transform.position;
+        startPosition = transform.position;
         transform.DOMove(enemies[0].transform.GetChild(0).position, 0.5f);
         int rand = Random.Range(0, abilities.Length);
         abilities[rand].Use(this, enemies[0]);
+        enemies[0].StartCoroutine(enemies[0].GetComponent<Player>().BlockTimingCoroutine(abilities[rand].power + Strength - enemies[0].Armor, type, this, 2f));
         Debug.Log(abilities[rand].displayName + " used against " + enemies[0].name + "!");
         // transform.DOMove(startPosition, 0.5f);
     }
@@ -193,17 +207,16 @@ public class Actor : MonoBehaviour
     {
         transform.DOMoveY(transform.position.y - 1, 0.5f);
         spriteRenderer.DOFade(0f, 0.5f);
-        this.enabled = false;
         Invoke("SetDead", 0.5f);
+    }
+
+    private void SetDead()
+    {
+        Destroy(this.gameObject);
 
         foreach (Actor enemy in enemies)
         {
             enemy.GetEnemies();
         }
-    }
-
-    private void SetDead()
-    {
-        gameObject.SetActive(false);
     }
 }
