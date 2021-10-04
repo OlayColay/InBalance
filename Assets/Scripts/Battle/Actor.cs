@@ -186,10 +186,11 @@ public class Actor : MonoBehaviour
     public virtual void Attack()
     {
         startPosition = transform.position;
-        transform.DOMove(enemies[0].transform.GetChild(0).position, 0.5f);
+        transform.DOMove(enemies[0].transform.GetChild(0).position, 0.5f).OnComplete(() => 
+            transform.GetChild(1).GetComponent<ParticleSystem>().Play());
         int rand = Random.Range(0, abilities.Length);
         abilities[rand].Use(this, enemies[0]);
-        enemies[0].StartCoroutine(enemies[0].GetComponent<Player>().BlockTimingCoroutine(abilities[rand].power + Strength - enemies[0].Armor, type, this, 2f));
+        enemies[0].StartCoroutine(enemies[0].GetComponent<Player>().BlockTimingCoroutine(abilities[rand].power + Strength - enemies[0].Armor, type, this, 1f));
         Debug.Log(abilities[rand].displayName + " used against " + enemies[0].name + "!");
         // transform.DOMove(startPosition, 0.5f);
     }
