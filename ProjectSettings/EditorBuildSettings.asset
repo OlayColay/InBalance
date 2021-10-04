@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/0_House.unity
     guid: 471c6227178e8214c8aa5d6ba08e8f11
   - enabled: 1
+    path: Assets/Scenes/Levels/Cutscene_AfterHouse.unity
+    guid: d74f43658d2091045886c4c188978f43
+  - enabled: 1
     path: Assets/Scenes/Levels/Starting.unity
     guid: 0ff45798122c1b445864be951acb34c9
   - enabled: 1

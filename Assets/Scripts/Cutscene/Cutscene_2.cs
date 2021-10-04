@@ -57,7 +57,7 @@ public class Cutscene_2 : MonoBehaviour
                     dialogueBox.GetComponent<RunMultipleDialogue>().startDialogue();
                     break;
                 default:
-                    // SceneManager.LoadScene("0_House");
+                    SceneManager.LoadScene("Starting");
                     break;
             }
         };

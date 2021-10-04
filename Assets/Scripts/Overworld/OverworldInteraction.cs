@@ -153,7 +153,7 @@ public class OverworldInteraction : MonoBehaviour
                 if (HouseGlobals.canSleep)
                 {
                     offset = 1;
-                    SceneManager.LoadScene("Starting");
+                    SceneManager.LoadScene("Cutscene_AfterHouse");
                 }
                 else
                 {
