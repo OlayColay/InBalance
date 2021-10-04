@@ -200,17 +200,17 @@ public class Actor : MonoBehaviour
     {
         transform.DOMoveY(transform.position.y - 1, 0.5f);
         spriteRenderer.DOFade(0f, 0.5f);
-        this.enabled = false;
         Invoke("SetDead", 0.5f);
+    }
+
+    private void SetDead()
+    {
+        this.enabled = false;
+        gameObject.SetActive(false);
 
         foreach (Actor enemy in enemies)
         {
             enemy.GetEnemies();
         }
-    }
-
-    private void SetDead()
-    {
-        gameObject.SetActive(false);
     }
 }
