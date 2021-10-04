@@ -221,7 +221,7 @@ MonoBehaviour:
   armor: 0
   wisdom: 10
   resist: 10
-  type: 0
+  type: 5
   abilities: []
   enemies: []
   isAttacking: 0
@@ -233,7 +233,6 @@ MonoBehaviour:
   selectedEnemy: {fileID: 0}
   timeIndic: {fileID: 0}
   invulnerable: 0
-  elementMeters: 0000000000000000000000000000000000000000
 --- !u!95 &2760951878459114422
 Animator:
   serializedVersion: 3

@@ -104,7 +104,7 @@ MonoBehaviour:
   armor: 10
   wisdom: 0
   resist: 0
-  type: 2
+  type: 1
   abilities:
   - {fileID: -3298260198520459821, guid: e9df5711d39d2f14698ff66897851bb6, type: 3}
   enemies: []
