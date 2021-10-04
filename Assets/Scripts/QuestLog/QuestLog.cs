@@ -48,9 +48,11 @@ public class QuestLog : MonoBehaviour
     {
         blackScreen.gameObject.SetActive(true);
         blackScreen.DOFade(0f, 1f).SetEase(Ease.Linear).OnComplete(() => {
+            /*
             dialogueBox.loadDialogue(5, 1);
             dialogueBox.gameObject.SetActive(true);
             dialogueBox.startDialogue();
+            */
             blackScreen.gameObject.SetActive(false);
         });
     }
