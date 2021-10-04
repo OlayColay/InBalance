@@ -282,10 +282,9 @@ public class Player : Actor
         SelectedEnemyNum = SelectedEnemyNum;
     }
 
-    public IEnumerator BlockTimingCoroutine(int damage, Type attackType, Actor owner)
+    public IEnumerator BlockTimingCoroutine(int damage, Type attackType, Actor owner, float timeBeforeDamage)
     {
-        float totalAttackTime = 3f;
-        float critWindowStart = totalAttackTime - 2f / 3f;
+        float critWindowStart = timeBeforeDamage - 2f / 3f;
         float critWindowEnd = critWindowStart + 1f / 3f;
         float currTime = 0f;
         bool chanceUsed = false;
@@ -293,11 +292,11 @@ public class Player : Actor
         
         attemptAction = false;
 
-        while (currTime < totalAttackTime)
+        while (currTime < timeBeforeDamage)
         {
             yield return 0;
             currTime += Time.deltaTime;
-            timeIndic.GetComponent<RectTransform>().anchoredPosition = startingPosition + new Vector3((600 * currTime) / totalAttackTime, 0, 0);
+            timeIndic.GetComponent<RectTransform>().anchoredPosition = startingPosition + new Vector3((600 * currTime) / timeBeforeDamage, 0, 0);
             if (currTime > critWindowStart && currTime < critWindowEnd)
             {
                 timeIndic.GetComponent<Image>().color = Color.white;

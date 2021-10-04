@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 8653869513861000815}
+  damageText: {fileID: 7872077071506692991, guid: 88d9a54d70d6c1e47bd3afcf5a5a7d87, type: 3}
   health: 100
   maxHealth: 100
   strength: 10
