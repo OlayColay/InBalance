@@ -17,6 +17,9 @@ public class ScanDialogue : MonoBehaviour
     public float waitTime = .025f;
     public bool inWrite = false;
     public bool hitButt = false;
+    private Text currText;
+    private string currDia;
+
 
     // Start is called before the first frame update
     void Start()
@@ -32,17 +35,21 @@ public class ScanDialogue : MonoBehaviour
 
     public void keyPress()
     {
-        hitButt = true;
+        Debug.Log("here");
+        StopCoroutine(writeOutDia(currText, currDia));
     }
 
     public void writeToBox(Text diaText, string dialogue)
     {
+        currText = diaText;
+        currDia = dialogue;
         StartCoroutine(writeOutDia(diaText, dialogue));
     }
 
     IEnumerator writeOutDia(Text diaText, string dialogue)
     {
         inWrite = true;
+        hitButt = false;
         string tempDia = dialogue;
         diaText.text = "";
         while (tempDia.Length != 0)
@@ -52,6 +59,7 @@ public class ScanDialogue : MonoBehaviour
             yield return new WaitForSeconds(waitTime);
             if (hitButt)
             {
+                Debug.Log("hit");
                 diaText.text = dialogue;
                 tempDia = "";
                 hitButt = false;
