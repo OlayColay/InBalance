@@ -36,6 +36,7 @@ public class StartBattle : MonoBehaviour
     // This goes before any Start function in the scene!
     private void BattleLoaded(Scene scene, LoadSceneMode mode)
     {
+        if (this == null) return;
         if (GetComponent<Collider2D>().IsTouching(player))
         {
             GameObject.FindObjectOfType<BattleManager>().SpawnOpponents(opponents, this.gameObject);

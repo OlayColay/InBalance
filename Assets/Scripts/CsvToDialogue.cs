@@ -1,7 +1,8 @@
+using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using System.IO;
+using System.Text.RegularExpressions;
 
 
 /*
@@ -13,41 +14,50 @@ using System.IO;
  */
 public class CsvToDialogue
 {
-    static string csvFile = "Assets/Resources/Ludum Dare Team 5 Dialogue.csv";
-    static FileInfo theSourceFile = null;
-    static StreamReader reader = null;
+    static string SPLIT_RE = @",(?=(?:[^""]*""[^""]*"")*(?![^""]*""))";
+    static string LINE_SPLIT_RE = @"\r\n|\n\r|\n|\r";
+    static char[] TRIM_CHARS = { '\"' };
 
-    public static string pullColumn(int colNum)
+    static List<Dictionary<string, object>> list;
+ 
+    public static string pullColumn(int num)
     {
+        if (list == null)
+            CreateList();
+    
+        return list[num-2]["Actual Text (There will be a character limit but IDK what it is yet)"].ToString();
+    }
 
-        theSourceFile = new FileInfo(csvFile);
-        reader = theSourceFile.OpenText();
-
-        for (int x = 0; x < colNum - 1; x++)
-        {
-            reader.ReadLine();
-        }
-
-        string fullCol = reader.ReadLine();
-
-        int temp = 0;
-        for (int x = 0; x < fullCol.Length; x++)
-        {
-            if (fullCol[x] == ',')
-            {
-                temp = x;
-                break;
+    private static void CreateList()
+    {
+        list = new List<Dictionary<string, object>>();
+        TextAsset data = Resources.Load ("Ludum Dare Team 5 Dialogue") as TextAsset;
+ 
+        var lines = Regex.Split (data.text, LINE_SPLIT_RE);
+ 
+        if(lines.Length <= 1) return;
+ 
+        var header = Regex.Split(lines[0], SPLIT_RE);
+        for(var i=1; i < lines.Length; i++) {
+ 
+            var values = Regex.Split(lines[i], SPLIT_RE);
+            // if(values.Length == 0 ||values[0] == "") continue;
+ 
+            var entry = new Dictionary<string, object>();
+            for(var j=0; j < header.Length && j < values.Length; j++ ) {
+                string value = values[j];
+                value = value.TrimStart(TRIM_CHARS).TrimEnd(TRIM_CHARS).Replace("\\", "");
+                object finalvalue = value;
+                int n;
+                float f;
+                if(int.TryParse(value, out n)) {
+                    finalvalue = n;
+                } else if (float.TryParse(value, out f)) {
+                    finalvalue = f;
+                }
+                entry[header[j]] = finalvalue;
             }
+            list.Add (entry);
         }
-
-        fullCol = fullCol.Substring(temp + 1);
-        fullCol = fullCol.Remove(fullCol.Length - 4, 4);
-        if (fullCol.StartsWith("\""))
-        {
-            fullCol = fullCol.Remove(0, 1);
-            fullCol = fullCol.Remove(fullCol.Length - 1, 1);
-        }
-
-        return fullCol;
     }
 }
