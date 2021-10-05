@@ -19,7 +19,6 @@ public class CsvToDialogue
 
     public static string pullColumn(int colNum)
     {
-        Debug.Log(colNum);
 
         theSourceFile = new FileInfo(csvFile);
         reader = theSourceFile.OpenText();
