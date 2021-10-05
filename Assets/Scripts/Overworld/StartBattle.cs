@@ -39,8 +39,8 @@ public class StartBattle : MonoBehaviour
         if (GetComponent<Collider2D>().IsTouching(player))
         {
             GameObject.FindObjectOfType<BattleManager>().SpawnOpponents(opponents, this.gameObject);
-            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = false;
-            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioListener>().enabled = false;
+            music.GetComponent<Camera>().enabled = false;
+            music.GetComponent<AudioListener>().enabled = false;
         }
     }
 }

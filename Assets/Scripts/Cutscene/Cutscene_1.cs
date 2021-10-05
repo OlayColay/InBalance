@@ -15,6 +15,8 @@ public class Cutscene_1 : MonoBehaviour
         controls = new Controls();
         controls.Overworld.Interact.performed += pressed =>
         {
+            if (dialogueBox.GetComponent<ScanDialogue>().inWrite)
+                return;
             pressCount += 1;
             switch (pressCount)
             {

@@ -153,7 +153,8 @@ public class OverworldInteraction : MonoBehaviour
                 if (HouseGlobals.canSleep)
                 {
                     offset = 1;
-                    SceneManager.LoadScene("Cutscene_AfterHouse");
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<OverworldMovement>().controls.Overworld.Disable();
+                    Invoke("LoadCutscene", 3f);
                 }
                 else
                 {
@@ -169,4 +170,8 @@ public class OverworldInteraction : MonoBehaviour
         return offset;
     }
 
+    private void LoadCutscene()
+    {
+        SceneManager.LoadScene("Cutscene_AfterHouse");
+    }
 }

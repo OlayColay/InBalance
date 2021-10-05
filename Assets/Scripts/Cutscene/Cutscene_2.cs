@@ -52,12 +52,12 @@ public class Cutscene_2 : MonoBehaviour
                     dialogueBox.GetComponent<RunMultipleDialogue>().loadDialogue(54, 1);
                     dialogueBox.GetComponent<RunMultipleDialogue>().startDialogue();
                     break;
-                case 7:
-                    art1.SetActive(false);
-                    art2.SetActive(true);
-                    dialogueBox.GetComponent<RunMultipleDialogue>().loadDialogue(57, 1);
-                    dialogueBox.GetComponent<RunMultipleDialogue>().startDialogue();
-                    break;
+                // case 7:
+                //     art1.SetActive(false);
+                //     art2.SetActive(true);
+                //     dialogueBox.GetComponent<RunMultipleDialogue>().loadDialogue(57, 1);
+                //     dialogueBox.GetComponent<RunMultipleDialogue>().startDialogue();
+                //     break;
                 default:
                     SceneManager.LoadScene("Starting");
                     break;
