@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Video;
+using UnityEngine.SceneManagement;
 using DG.Tweening;
 
 public class Aeolus : Actor
@@ -41,5 +41,12 @@ public class Aeolus : Actor
     private void ReturnToNormal()
     {
         spriteRenderer.sprite = idle;
+    }
+
+    public override void Die()
+    {
+        StartCoroutine(globals.LoadCredits());
+        transform.DOMoveY(transform.position.y - 1, 0.5f);
+        spriteRenderer.DOFade(0f, 0.5f);
     }
 }

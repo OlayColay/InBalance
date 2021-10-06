@@ -8,7 +8,8 @@ public class StartBattle : MonoBehaviour
     /// <summary> The opponents that the player will fight in the battle </summary>
     public GameObject[] opponents;
 
-    public AudioSource music;
+    public AudioSource audioSource;
+    public AudioClip battleMusic;
 
     private Collider2D player;
 
@@ -19,7 +20,7 @@ public class StartBattle : MonoBehaviour
         Debug.Log("Start Battle");
         if (other.tag == "Player")
         {
-            music.Pause();
+            audioSource.Pause();
 
             GameObject.FindObjectOfType<OverworldMovement>().controls.Overworld.Disable();
             SceneManager.LoadScene("Battle", LoadSceneMode.Additive);
@@ -39,9 +40,9 @@ public class StartBattle : MonoBehaviour
         if (this == null) return;
         if (GetComponent<Collider2D>().IsTouching(player))
         {
-            GameObject.FindObjectOfType<BattleManager>().SpawnOpponents(opponents, this.gameObject);
-            music.GetComponent<Camera>().enabled = false;
-            music.GetComponent<AudioListener>().enabled = false;
+            GameObject.FindObjectOfType<BattleManager>().SpawnOpponents(opponents, this.gameObject, battleMusic);
+            audioSource.GetComponent<Camera>().enabled = false;
+            audioSource.GetComponent<AudioListener>().enabled = false;
         }
     }
 }

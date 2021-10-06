@@ -27,8 +27,11 @@ public class BattleManager : MonoBehaviour
 
     private GameObject overworldEnemy;
 
-    public void SpawnOpponents(GameObject[] opponents, GameObject overworldObject)
+    public void SpawnOpponents(GameObject[] opponents, GameObject overworldObject, AudioClip battleMusic)
     {
+        GetComponent<AudioSource>().clip = battleMusic;
+        GetComponent<AudioSource>().Play();
+
         switch(opponents.Length)
         {
             case 1:

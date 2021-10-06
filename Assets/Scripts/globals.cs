@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class globals
 {
@@ -14,4 +15,10 @@ public class globals
 
     /// <summary> Element meters of the player </summary>
     public static int[] elementMeters = {0, 0, 0, 0, 0, 0};
+
+    public static IEnumerator LoadCredits()
+    {
+        yield return new WaitForSecondsRealtime(3f);
+        SceneManager.LoadScene("Credits");
+    }
 }
